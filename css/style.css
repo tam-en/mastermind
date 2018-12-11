@@ -6,31 +6,29 @@ body {
 .grid-container {
 	display: grid;
 	position: relative;
-    margin: 0 30%;
-
 	grid-template-rows: 50px 50px repeat(17, 25px) 50px;
-	grid-template-columns: 1px 1px 25px 25px 50px 50px 50px 50px 50px;
+	grid-template-columns: 1fr 50px 25px 24px 24px 50px 50px 50px 50px 50px 1fr;
 	grid-template-areas: 
-		"blank blank heady heady heady heady heady heady heady"
-		"blank blank tips tips tips solutionA solutionB solutionC solutionD"
-		"blank blank score8a score8b tryLabel8 try8a try8b try8c try8d"
-		"blank blank score8c score8d tryLabel8 try8a try8b try8c try8d"
-		"blank blank score7a score7b tryLabel7 try7a try7b try7c try7d"
-		"blank blank score7c score7d tryLabel7 try7a try7b try7c try7d"
-		"blank blank score6a score6b tryLabel6 try6a try6b try6c try6d"
-		"blank blank score6c score6d tryLabel6 try6a try6b try6c try6d"
-		"blank blank score5a score5b tryLabel5 try5a try5b try5c try5d"
-		"blank blank score5c score5d tryLabel5 try5a try5b try5c try5d"
-		"blank blank score4a score4b tryLabel4 try4a try4b try4c try4d"
-		"blank blank score4c score4d tryLabel4 try4a try4b try4c try4d"
-		"blank blank score3a score3b tryLabel3 try3a try3b try3c try3d"
-		"blank blank score3c score3d tryLabel3 try3a try3b try3c try3d"
-		"blank blank score2a score2b tryLabel2 try2a try2b try2c try2d"
-		"blank blank score2c score2d tryLabel2 try2a try2b try2c try2d"
-		"blank blank score1a score1b tryLabel1 try1a try1b try1c try1d"
-		"blank blank score1c score1d tryLabel1 try1a try1b try1c try1d"
-		"pad pad pad pad pad pad pad pad pad"
-		"nada nada bead1 bead1 bead2 bead3 bead4 bead5 bead6";
+		". blanket blank heady heady heady heady heady heady heady ."
+		". blanket blank tips tips tips solutionA solutionB solutionC solutionD ."
+		". blanket blank score8a score8b tryLabel8 try8a try8b try8c try8d ."
+		". blanket blank score8c score8d tryLabel8 try8a try8b try8c try8d ."
+		". blanket blank score7a score7b tryLabel7 try7a try7b try7c try7d ."
+		". blanket blank score7c score7d tryLabel7 try7a try7b try7c try7d ."
+		". dtopBead6 . score6a score6b tryLabel6 try6a try6b try6c try6d ."
+		". dtopBead6 . score6c score6d tryLabel6 try6a try6b try6c try6d ."
+		". dtopBead5 . score5a score5b tryLabel5 try5a try5b try5c try5d ."
+		". dtopBead5 . score5c score5d tryLabel5 try5a try5b try5c try5d ."
+		". dtopBead4 . score4a score4b tryLabel4 try4a try4b try4c try4d ."
+		". dtopBead4 . score4c score4d tryLabel4 try4a try4b try4c try4d ."
+		". dtopBead3 . score3a score3b tryLabel3 try3a try3b try3c try3d ."
+		". dtopBead3 . score3c score3d tryLabel3 try3a try3b try3c try3d ."
+		". dtopBead2 . score2a score2b tryLabel2 try2a try2b try2c try2d ."
+		". dtopBead2 . score2c score2d tryLabel2 try2a try2b try2c try2d ."
+		". dtopBead1 . score1a score1b tryLabel1 try1a try1b try1c try1d ."
+		". dtopBead1 . score1c score1d tryLabel1 try1a try1b try1c try1d ."
+		". pad pad pad pad pad pad pad pad pad ."
+		". nada nada bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
 	grid-gap: 2px;
 }
 
@@ -149,3 +147,11 @@ body {
 #bead4 { grid-area: bead4 }
 #bead5 { grid-area: bead5 }
 #bead6 { grid-area: bead6 }
+
+#dtopBead1 { grid-area: dtopBead1 }
+#dtopBead2 { grid-area: dtopBead2 }
+#dtopBead3 { grid-area: dtopBead3 }
+#dtopBead4 { grid-area: dtopBead4 }
+#dtopBead5 { grid-area: dtopBead5 }
+#dtopBead6 { grid-area: dtopBead6 }
+

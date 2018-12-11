@@ -1,0 +1,58 @@
+interface
+	set up grid
+	mock beads
+	media queries to switch grid/sizes
+
+
+/////
+javascript
+	global variables
+		currentTry
+		currentTryBeadCells??
+
+	global? variables?
+		try1beadArray
+		try2beadArray
+		try3beadArray
+		try4beadArray
+		try5beadArray
+		try6beadArray
+		try7beadArray
+		try8beadArray
+
+		try1scoreArray
+		try2scoreArray
+		try3scoreArray
+		try4scoreArray
+		try5scoreArray
+		try6scoreArray
+		try7scoreArray
+		try8scoreArray
+
+
+	function: initialize game
+		randomly generate solution sequence
+		clear any arrays from last game
+			(guess arrays, solution arrays)
+		defaults to selection of cell1A
+		pop
+
+	function: playRound
+		populate currentTry bead cells with EventListeners
+
+		when each bead cell has a bead, display button over score boxes to submit guess.
+		turn off eventListeners in the currentTry bead cells
+
+
+
+	function: selectTargetCell
+
+
+	function: selectBeadForCell
+
+	function: detectIfBeadArrayIsFull
+
+	function: submitBeadArray
+
+
+	function: 
