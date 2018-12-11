@@ -2,13 +2,14 @@ interface
 	set up grid
 	mock beads
 	media queries to switch grid/sizes
+	mock up "GO!" button
 
 
 /////
 javascript
 	global variables
-		currentTry
-		currentTryBeadCells??
+		currentTry (turn number)
+		solution sequence
 
 	global? variables?
 		try1beadArray
@@ -34,25 +35,51 @@ javascript
 		randomly generate solution sequence
 		clear any arrays from last game
 			(guess arrays, solution arrays)
-		defaults to selection of cell1A
-		pop
+		event listeners on full bead array
+		
 
 	function: playRound
-		populate currentTry bead cells with EventListeners
+		populate currentTry (row) bead cells with EventListeners
 
-		when each bead cell has a bead, display button over score boxes to submit guess.
-		turn off eventListeners in the currentTry bead cells
+		make first one (A cell) glow or pulse
+
+		allow user to click on another cell in the row to turn on the glow there, turn off glow in previously glowing cell.
+
+		when user clicks on one of the beads in the full bead array, populate the glowing cell with that bead.
+
+		when each bead cell has a bead, display "go!" button over label cell.
+			- turn off eventListeners in the currentTry bead cells
+			- populate the try[currentTry]beadArray with the bead sequence from the submitted row
+			- compare the guess array with the solution sequence. 
+				- first compare for exact matches. Any exact matches get recorded as 2 in the try[currentTry]scoreArray.
+				- for cells in the guess array that don't generate an exact match, check to see if they match any bead in the solution sequence. Correct color match (but incorrect position match) gets scored as a 1 in the appropriate score Array.
+
+		populate score cells in appropriate row with solid dots and/or hollow dots and/or blank spaces per the appropriate scoreArray. 
+
+		if scoreArray === [2, 2, 2, 2], run gameWon function
+		if scoreArray !== [2, 2, 2, 2] && currentTry === 8, run gameLost function
+
+
+	function: gameOver
+		turn off all try cell and fullBead array listeners.
+		reveal solution sequence.
+		try again? message (if yes, run initialize function)
 
 
 
-	function: selectTargetCell
+	function: gameWon
+		run gameOver function
+		display some kind of "yay, you win!" message
+		play happy sounds?
 
 
-	function: selectBeadForCell
+	function: gameLost
+		run gameOver function
+		display some kind of "you just got caught still guessing at the end of the game" message
 
-	function: detectIfBeadArrayIsFull
+	should these be helper functions?
+		function: selectTargetCell
+		function: selectBeadForCell
+		function: detectIfBeadArrayIsFull
+		function: submitBeadArray
 
-	function: submitBeadArray
-
-
-	function: 

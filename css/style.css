@@ -1,20 +1,22 @@
 body {
 	text-align: center;
 	font-family: 'Roboto', sans-serif;
+	background-color: #6B5CA5;
+	color: black;
 }
 
 .grid-container {
 	display: grid;
 	position: relative;
 	grid-template-rows: 50px 50px repeat(17, 25px) 50px;
-	grid-template-columns: 1fr 50px 25px 24px 24px 50px 50px 50px 50px 50px 1fr;
+	grid-template-columns: 1fr 50px 25px 24px 24px repeat(5, 50px) 1fr;
 	grid-template-areas: 
-		". blanket blank heady heady heady heady heady heady heady ."
-		". blanket blank tips tips tips solutionA solutionB solutionC solutionD ."
-		". blanket blank score8a score8b tryLabel8 try8a try8b try8c try8d ."
-		". blanket blank score8c score8d tryLabel8 try8a try8b try8c try8d ."
-		". blanket blank score7a score7b tryLabel7 try7a try7b try7c try7d ."
-		". blanket blank score7c score7d tryLabel7 try7a try7b try7c try7d ."
+		". . . heady heady heady heady heady heady heady ."
+		". . . tips tips tips solution1 solution2 solution3 solution4 ."
+		". . . score8a score8b tryLabel8 try8a try8b try8c try8d ."
+		". . . score8c score8d tryLabel8 try8a try8b try8c try8d ."
+		". . . score7a score7b tryLabel7 try7a try7b try7c try7d ."
+		". . . score7c score7d tryLabel7 try7a try7b try7c try7d ."
 		". dtopBead6 . score6a score6b tryLabel6 try6a try6b try6c try6d ."
 		". dtopBead6 . score6c score6d tryLabel6 try6a try6b try6c try6d ."
 		". dtopBead5 . score5a score5b tryLabel5 try5a try5b try5c try5d ."
@@ -27,8 +29,8 @@ body {
 		". dtopBead2 . score2c score2d tryLabel2 try2a try2b try2c try2d ."
 		". dtopBead1 . score1a score1b tryLabel1 try1a try1b try1c try1d ."
 		". dtopBead1 . score1c score1d tryLabel1 try1a try1b try1c try1d ."
-		". pad pad pad pad pad pad pad pad pad ."
-		". nada nada bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
+		". . . . . . . . . . ."
+		". . . bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
 	grid-gap: 2px;
 }
 
@@ -36,13 +38,22 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid black;
 	font-weight: 700;
+/*	background-image: radial-gradient(#649FC9, #A9CECD);
+*/	background-color: #C6D8FF;
+}
+
+.centersquare-plain {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	background-color: #649FC9;
+
 }
 
 #heady { 
 	grid-area: heady;
-	background-color: lightgray;
 	font-weight: 700;
  }
 
@@ -51,10 +62,10 @@ body {
 	font-weight: 700;
 }
 
-#solutionA { grid-area: solutionA }
-#solutionB { grid-area: solutionB }
-#solutionC { grid-area: solutionC }
-#solutionD { grid-area: solutionD }
+#solution1 { grid-area: solution1 }
+#solution2 { grid-area: solution2 }
+#solution3 { grid-area: solution3 }
+#solution4 { grid-area: solution4 }
 
 #try8scores {}
 #score8a { 
