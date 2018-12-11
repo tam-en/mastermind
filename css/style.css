@@ -31,25 +31,28 @@ body {
 		"blank blank score1c score1d tryLabel1 try1a try1b try1c try1d"
 		"pad pad pad pad pad pad pad pad pad"
 		"nada nada bead1 bead1 bead2 bead3 bead4 bead5 bead6";
+	grid-gap: 2px;
 }
 
 .centersquare {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 1px solid black;
-	border-right: 1px solid black;
+	border: 1px solid black;
+	font-weight: 700;
 }
 
 #heady { 
 	grid-area: heady;
 	background-color: lightgray;
+	font-weight: 700;
  }
 
 #tippy { 
 	grid-area: tips; 
 	font-weight: 700;
 }
+
 #solutionA { grid-area: solutionA }
 #solutionB { grid-area: solutionB }
 #solutionC { grid-area: solutionC }
@@ -139,3 +142,10 @@ body {
 #try1b {grid-area: try1b }
 #try1c {grid-area: try1c }
 #try1d {grid-area: try1d }
+
+#bead1 { grid-area: bead1 }
+#bead2 { grid-area: bead2 }
+#bead3 { grid-area: bead3 }
+#bead4 { grid-area: bead4 }
+#bead5 { grid-area: bead5 }
+#bead6 { grid-area: bead6 }
