@@ -13,22 +13,22 @@ body {
 	grid-template-areas: 
 		". . . heady heady heady heady heady heady heady ."
 		". . . tips tips tips solution1 solution2 solution3 solution4 ."
-		". . . score8a score8b tryLabel8 try8a try8b try8c try8d ."
-		". . . score8c score8d tryLabel8 try8a try8b try8c try8d ."
-		". . . score7a score7b tryLabel7 try7a try7b try7c try7d ."
-		". . . score7c score7d tryLabel7 try7a try7b try7c try7d ."
-		". dtopBead6 . score6a score6b tryLabel6 try6a try6b try6c try6d ."
-		". dtopBead6 . score6c score6d tryLabel6 try6a try6b try6c try6d ."
-		". dtopBead5 . score5a score5b tryLabel5 try5a try5b try5c try5d ."
-		". dtopBead5 . score5c score5d tryLabel5 try5a try5b try5c try5d ."
-		". dtopBead4 . score4a score4b tryLabel4 try4a try4b try4c try4d ."
-		". dtopBead4 . score4c score4d tryLabel4 try4a try4b try4c try4d ."
-		". dtopBead3 . score3a score3b tryLabel3 try3a try3b try3c try3d ."
-		". dtopBead3 . score3c score3d tryLabel3 try3a try3b try3c try3d ."
-		". dtopBead2 . score2a score2b tryLabel2 try2a try2b try2c try2d ."
-		". dtopBead2 . score2c score2d tryLabel2 try2a try2b try2c try2d ."
-		". dtopBead1 . score1a score1b tryLabel1 try1a try1b try1c try1d ."
-		". dtopBead1 . score1c score1d tryLabel1 try1a try1b try1c try1d ."
+		". . . score8_1 score8_2 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
+		". . . score8_3 score8_4 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
+		". . . score7_1 score7_2 tryLabel7 try7_1 try7_2 try7_3 try7_4 ."
+		". . . score7_3 score7_4 tryLabel7 try7_1 try7_2 try7_3 try7_4 ."
+		". dtopBead6 . score6_1 score6_2 tryLabel6 try6_1 try6_2 try6_3 try6_4 ."
+		". dtopBead6 . score6_3 score6_4 tryLabel6 try6_1 try6_2 try6_3 try6_4 ."
+		". dtopBead5 . score5_1 score5_2 tryLabel5 try5_1 try5_2 try5_3 try5_4 ."
+		". dtopBead5 . score5_3 score5_4 tryLabel5 try5_1 try5_2 try5_3 try5_4 ."
+		". dtopBead4 . score4_1 score4_2 tryLabel4 try4_1 try4_2 try4_3 try4_4 ."
+		". dtopBead4 . score4_3 score4_4 tryLabel4 try4_1 try4_2 try4_3 try4_4 ."
+		". dtopBead3 . score3_1 score3_2 tryLabel3 try3_1 try3_2 try3_3 try3_4 ."
+		". dtopBead3 . score3_3 score3_4 tryLabel3 try3_1 try3_2 try3_3 try3_4 ."
+		". dtopBead2 . score2_1 score2_2 tryLabel2 try2_1 try2_2 try2_3 try2_4 ."
+		". dtopBead2 . score2_3 score2_4 tryLabel2 try2_1 try2_2 try2_3 try2_4 ."
+		". dtopBead1 . score1_1 score1_2 tryLabel1 try1_1 try1_2 try1_3 try1_4 ."
+		". dtopBead1 . score1_3 score1_4 tryLabel1 try1_1 try1_2 try1_3 try1_4 ."
 		". . . . . . . . . . ."
 		". . . bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
 	grid-gap: 2px;
@@ -68,89 +68,85 @@ body {
 #solution4 { grid-area: solution4 }
 
 #try8scores {}
-#score8a { 
-	grid-area: score8a;
-	 }
-#score8b { 
-	grid-area: score8b;
-	  }
-#score8c { grid-area: score8c; }
-#score8d { grid-area: score8d; }
+#score8_1 { grid-area: score8_1;}
+#score8_2 { grid-area: score8_2; }
+#score8_3 { grid-area: score8_3; }
+#score8_4 { grid-area: score8_4; }
 #tryLabel8 { grid-area: tryLabel8 }
-#try8a {grid-area: try8a }
-#try8b {grid-area: try8b }
-#try8c {grid-area: try8c }
-#try8d {grid-area: try8d }
+#try8_1 {grid-area: try8_1 }
+#try8_2 {grid-area: try8_2 }
+#try8_3 {grid-area: try8_3 }
+#try8_4 {grid-area: try8_4 }
 
-#score7a { grid-area: score7a }
-#score7b { grid-area: score7b }
-#score7c { grid-area: score7c }
-#score7d { grid-area: score7d }
+#score7_1 { grid-area: score7_1 }
+#score7_2 { grid-area: score7_2 }
+#score7_3 { grid-area: score7_3 }
+#score7_4 { grid-area: score7_4 }
 #tryLabel7 { grid-area: tryLabel7 }
-#try7a {grid-area: try7a }
-#try7b {grid-area: try7b }
-#try7c {grid-area: try7c }
-#try7d {grid-area: try7d }
+#try7_1 {grid-area: try7_1 }
+#try7_2 {grid-area: try7_2 }
+#try7_3 {grid-area: try7_3 }
+#try7_4 {grid-area: try7_4 }
 
-#score6a { grid-area: score6a }
-#score6b { grid-area: score6b }
-#score6c { grid-area: score6c }
-#score6d { grid-area: score6d }
+#score6_1 { grid-area: score6_1 }
+#score6_2 { grid-area: score6_2 }
+#score6_3 { grid-area: score6_3 }
+#score6_4 { grid-area: score6_4 }
 #tryLabel6 { grid-area: tryLabel6 }
-#try6a {grid-area: try6a }
-#try6b {grid-area: try6b }
-#try6c {grid-area: try6c }
-#try6d {grid-area: try6d }
+#try6_1 {grid-area: try6_1 }
+#try6_2 {grid-area: try6_2 }
+#try6_3 {grid-area: try6_3 }
+#try6_4 {grid-area: try6_4 }
 
-#score5a { grid-area: score5a }
-#score5b { grid-area: score5b }
-#score5c { grid-area: score5c }
-#score5d { grid-area: score5d }
+#score5_1 { grid-area: score5_1 }
+#score5_2 { grid-area: score5_2 }
+#score5_3 { grid-area: score5_3 }
+#score5_4 { grid-area: score5_4 }
 #tryLabel5 { grid-area: tryLabel5 }
-#try5a {grid-area: try5a }
-#try5b {grid-area: try5b }
-#try5c {grid-area: try5c }
-#try5d {grid-area: try5d }
+#try5_1 {grid-area: try5_1 }
+#try5_2 {grid-area: try5_2 }
+#try5_3 {grid-area: try5_3 }
+#try5_4 {grid-area: try5_4 }
 
-#score4a { grid-area: score4a }
-#score4b { grid-area: score4b }
-#score4c { grid-area: score4c }
-#score4d { grid-area: score4d }
+#score4_1 { grid-area: score4_1 }
+#score4_2 { grid-area: score4_2 }
+#score4_3 { grid-area: score4_3 }
+#score4_4 { grid-area: score4_4 }
 #tryLabel4 { grid-area: tryLabel4 }
-#try4a {grid-area: try4a }
-#try4b {grid-area: try4b }
-#try4c {grid-area: try4c }
-#try4d {grid-area: try4d }
+#try4_1 {grid-area: try4_1 }
+#try4_2 {grid-area: try4_2 }
+#try4_3 {grid-area: try4_3 }
+#try4_4 {grid-area: try4_4 }
 
-#score3a { grid-area: score3a }
-#score3b { grid-area: score3b }
-#score3c { grid-area: score3c }
-#score3d { grid-area: score3d }
+#score3_1 { grid-area: score3_1 }
+#score3_2 { grid-area: score3_2 }
+#score3_3 { grid-area: score3_3 }
+#score3_4 { grid-area: score3_4 }
 #tryLabel3 { grid-area: tryLabel3 }
-#try3a {grid-area: try3a }
-#try3b {grid-area: try3b }
-#try3c {grid-area: try3c }
-#try3d {grid-area: try3d }
+#try3_1 {grid-area: try3_1 }
+#try3_2 {grid-area: try3_2 }
+#try3_3 {grid-area: try3_3 }
+#try3_4 {grid-area: try3_4 }
 
-#score2a { grid-area: score2a }
-#score2b { grid-area: score2b }
-#score2c { grid-area: score2c }
-#score2d { grid-area: score2d }
+#score2_1 { grid-area: score2_1 }
+#score2_2 { grid-area: score2_2 }
+#score2_3 { grid-area: score2_3 }
+#score2_4 { grid-area: score2_4 }
 #tryLabel2 { grid-area: tryLabel2 }
-#try2a {grid-area: try2a }
-#try2b {grid-area: try2b }
-#try2c {grid-area: try2c }
-#try2d {grid-area: try2d }
+#try2_1 {grid-area: try2_1 }
+#try2_2 {grid-area: try2_2 }
+#try2_3 {grid-area: try2_3 }
+#try2_4 {grid-area: try2_4 }
 
-#score1a { grid-area: score1a }
-#score1b { grid-area: score1b }
-#score1c { grid-area: score1c }
-#score1d { grid-area: score1d }
+#score1_1 { grid-area: score1_1 }
+#score1_2 { grid-area: score1_2 }
+#score1_3 { grid-area: score1_3 }
+#score1_4 { grid-area: score1_4 }
 #tryLabel1 { grid-area: tryLabel1 }
-#try1a {grid-area: try1a }
-#try1b {grid-area: try1b }
-#try1c {grid-area: try1c }
-#try1d {grid-area: try1d }
+#try1_1 {grid-area: try1_1 }
+#try1_2 {grid-area: try1_2 }
+#try1_3 {grid-area: try1_3 }
+#try1_4 {grid-area: try1_4 }
 
 #bead1 { grid-area: bead1 }
 #bead2 { grid-area: bead2 }

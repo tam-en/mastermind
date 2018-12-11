@@ -2,6 +2,7 @@
 // GLOBAL CONSTANTS
 const sequenceLength = 4;
 const numOfTries = 8;
+const cellColor = "#C6D8FF";
 
 // GLOBAL VARIABLES
 let currentTry;
@@ -49,4 +50,22 @@ let initializeGame = function() {
 
 initializeGame();
 
+let sequenceTry = function() {
+	var glowingCellId = "Try" + currentTry + "_" + 1;
+	// make glowingCell glow ... well, sort of
+	//document.getElementById(glowingCellId).setAttribute("background-image", "#72195A");
+	for (i = 0; i < sequenceLength; i++) {
+		console.log('currentTry = ' + currentTry);
+		document.addEventListener
+		var currentCellId = "Try" + currentTry + "_" + (i+1);
+		console.log("currentCellId = " + currentCellId)
+		console.log("");
+		//if CurrentTry === 9, gameLost function call
+	}
+	currentTry++
+	console.log("currentTry = " + currentTry);
+
+}
+
+sequenceTry();
 
