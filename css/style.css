@@ -9,7 +9,7 @@ body {
 	display: grid;
 	position: relative;
 	grid-template-rows: 50px 50px repeat(17, 25px) 50px;
-	grid-template-columns: 1fr 50px 25px 24px 24px repeat(5, 50px) 1fr;
+	grid-template-columns: 1fr 50px 25px 23px 23px repeat(5, 50px) 1fr;
 	grid-template-areas: 
 		". . . heady heady heady heady heady heady heady ."
 		". . . tips tips tips solution1 solution2 solution3 solution4 ."
@@ -31,7 +31,7 @@ body {
 		". dtopBead1 . score1_3 score1_4 tryLabel1 try1_1 try1_2 try1_3 try1_4 ."
 		". . . . . . . . . . ."
 		". . . bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
-	grid-gap: 2px;
+	grid-gap: 3px;
 }
 
 .centersquare {
@@ -40,7 +40,7 @@ body {
 	align-items: center;
 	font-weight: 700;
 /*	background-image: radial-gradient(#649FC9, #A9CECD);
-*/	background-color: #C6D8FF;
+*/	background-color: #649FC9;
 }
 
 .centersquare-plain {
