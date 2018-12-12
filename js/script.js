@@ -278,7 +278,7 @@ let trySequence = function() {
 	// Make the current "try" row a different color and turn on listeners
 	for (i = 0; i < sequenceLength; i++) {
 		currentCellId = "try" + currentTry + "_" + (i+1);
-		console.log("currentCellId",currentCellId)
+		console.log("currentCellId", currentCellId)
 		activeCellArray[i] = currentCellId;
 		document.getElementById(currentCellId).style.backgroundColor = activeRowCellColor;
 		let currentScoreId = "score" + currentTry + "_" + (i+1);
