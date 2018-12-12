@@ -143,7 +143,6 @@ body {
 #score1_3 { grid-area: score1_3 }
 #score1_4 { grid-area: score1_4 }
 #tryLabel1 { grid-area: tryLabel1 }
-#try1_1 {grid-area: try1_1 }
 #try1_2 {grid-area: try1_2 }
 #try1_3 {grid-area: try1_3 }
 #try1_4 {grid-area: try1_4 }
@@ -161,4 +160,3 @@ body {
 #dtopBead4 { grid-area: dtopBead4 }
 #dtopBead5 { grid-area: dtopBead5 }
 #dtopBead6 { grid-area: dtopBead6 }
-

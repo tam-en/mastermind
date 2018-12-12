@@ -71,12 +71,6 @@ let initializeGame = function() {
 		document.getElementById(currentTargetImgId).setAttribute("src", currentBead);
 	};
 
-	// // Do I even need the next for loop? 
-
-	// // Populate solutionBeadArray
-	// for (i = 0; i < numberOfBeads; i++) {
-	// 	solutionBeadArray[i] = "bead" + (i+1);
-	// };
 
 	console.log('the random secret solution is', solutionSequence);
 	console.log('and the bead names for the solution are', solutionBeadNames);
@@ -86,21 +80,55 @@ initializeGame();
 
 ///////////////////////////////
 
+// let displaySubmitBtn = function() {
+// 	var targetLabelId = "tryLabel" + currentTry;
+// 	document.getElementById(targetLabelId).style.backgroundImage = './img/blank.png';
+// }
+
 let assignGlowToCell = function(cell) {
 	document.getElementById(glowingCellId).style.backgroundImage = '';
 	cell.style.backgroundImage = glowGradient;
 	glowingCellId = cell.id;
-	return glowingCellPosition = cell.id.toString().split('').pop();
+	glowingCellPosition = cell.id.toString().split('').pop();
 	console.log("glowingCellId=", glowingCellId, "and position is", glowingCellPosition);
 };
 
 let selectBead = function() {
+
+	// Store the clicked bead Id as "glowingBeadId" and make it glow (well, sort of) 
 	document.getElementById(glowingBeadId).style.backgroundImage = '';
 	document.getElementById(glowingBeadId).style.backgroundColor = activeRowCellColor;			
 	this.style.backgroundImage = glowGradient;
 	glowingBeadId = this.id;
-
 	nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = glowingBeadId;
+	console.log("xxglowingBeadId= " + glowingBeadId + " and nestedTryBeadArray[" + currentTry + "-1][" + glowingCellPosition +"-1] is " + nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
+	var selectedBeadPng = './img/' + glowingBeadId + '.png';
+	var currentTargetImgId = glowingCellId + "img";
+	console.log("selectedBeadPng=", selectedBeadPng);
+
+	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);
+
+	//test to see if nestedTryBeadArray[currentTry-1] is full, and if so, activate "submit" button
+	var selectedBeadCount = 0;
+	for(i = 0; i<sequenceLength; i++) {
+		if(nestedTryBeadArray[currentTry-1][i] !== '') {
+			selectedBeadCount++;
+		};
+	};
+
+	if(selectedBeadCount === 4) {
+		// make submit button available
+		console.log("all of the bead cells are full!");
+	};
+
+
+
+
+
+};
+
+let compareTryToSolution = function() {
+
 	var exactMatchCount = 0;
 	for(i = 0; i < sequenceLength; i++) {
 		if(nestedTryBeadArray[currentTry-1][i] === solutionBeadNames[i]) {
@@ -117,11 +145,12 @@ let selectBead = function() {
 
 	console.log(nestedTryBeadArray[currentTry-1]);
 
-
-	// need to implement currentTry iterator when a turn is finished
+		// need to implement currentTry iterator when a turn is finished
 	// perhaps at the end of each selectBead, test to see if current array is full, call
 	// helper functions to score, etc., and then...
 	// currentTry++
+
+
 };
 
 ///////////////////////////////////
