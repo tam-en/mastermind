@@ -72,18 +72,21 @@ let initializeGame = function() {
 	};
 
 
-	console.log('the random secret solution is', solutionSequence);
-	console.log('and the bead names for the solution are', solutionBeadNames);
+	//console.log('the random secret solution is', solutionSequence);
+	//console.log('and the bead names for the solution are', solutionBeadNames);
 };
 
 initializeGame();
 
-///////////////////////////////
+/////////////////////////////// helper functions. . . .
 
-// let displaySubmitBtn = function() {
-// 	var targetLabelId = "tryLabel" + currentTry;
-// 	document.getElementById(targetLabelId).style.backgroundImage = './img/blank.png';
-// }
+let displaySubmitBtn = function() {
+	var targetLabelId = "tryLabel" + currentTry;
+	document.getElementById(targetLabelId).style.backgroundImage = glowGradient;
+	//document.getElementById(targetLabelId).style.backgroundImage = "url('./img/blank.png')";
+	document.getElementById(targetLabelId).textContent = "GO!";
+	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
+}
 
 let assignGlowToCell = function(cell) {
 	document.getElementById(glowingCellId).style.backgroundImage = '';
@@ -101,10 +104,8 @@ let selectBead = function() {
 	this.style.backgroundImage = glowGradient;
 	glowingBeadId = this.id;
 	nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = glowingBeadId;
-	console.log("xxglowingBeadId= " + glowingBeadId + " and nestedTryBeadArray[" + currentTry + "-1][" + glowingCellPosition +"-1] is " + nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
-	console.log("selectedBeadPng=", selectedBeadPng);
 
 	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);
 
@@ -119,6 +120,8 @@ let selectBead = function() {
 	if(selectedBeadCount === 4) {
 		// make submit button available
 		console.log("all of the bead cells are full!");
+		displaySubmitBtn();
+		//compareTryToSolution();
 	};
 
 
@@ -129,40 +132,88 @@ let selectBead = function() {
 
 let compareTryToSolution = function() {
 
-	var exactMatchCount = 0;
+	// Turn off the submit button now that try array has been submitted
+
+	var targetLabelId = "tryLabel" + currentTry;
+	document.getElementById(targetLabelId).textContent = currentTry;
+	document.getElementById(targetLabelId).removeEventListener('click', compareTryToSolution);
+	document.getElementById(targetLabelId).style.backgroundImage = '';
+
+	let copyOfSolution = solutionBeadNames;
+	let compareSolution = new Array(4);
+	let copyOfTryArray = nestedTryBeadArray[currentTry-1];
+	let compareTry = new Array(4);
+	let exactMatchCount = 0;
+	let partialMatchCount = 0;  
+
+			console.log("exactMatchCount=", exactMatchCount);
+			console.log("copyOfSolution array=", copyOfSolution);
+			console.log("compareSolution array=", compareSolution)
+			console.log("copyOfTryArray =", copyOfTryArray);
+			console.log("compareTry =", compareTry);
+
+
 	for(i = 0; i < sequenceLength; i++) {
-		if(nestedTryBeadArray[currentTry-1][i] === solutionBeadNames[i]) {
+		if(copyOfTryArray[i] === copyOfSolution[i]) {
+			compareTry[i] = copyOfTryArray[i];
+			copyOfTryArray[i] = "";
+			compareSolution[i] = copyOfSolution[i];
+			copyOfSolution[i] = "";
 			exactMatchCount++;
-		} else {
-		};
+		}
 	};
 
+	for(i = 0; i < sequenceLength; i++) {
+		for(z = 0; z < sequenceLength; z++) {
+			if(copyOfTryArray[i] && copyOfSolution[z] && (copyOfTryArray[i] === copyOfSolution[z])) {
+				compareTry[i] = copyOfTryArray[i];
+				copyOfTryArray[i] = "";
+				compareSolution[z] = copyOfSolution[z];
+				copyOfSolution[z] = "";
+				partialMatchCount++;
+			};
+		}
+	};
+			
+			console.log("compareSolution array=", compareSolution)
+			console.log("copyOfSolution array=", copyOfSolution);
+			console.log("copyOfTryArray =", copyOfTryArray);
+			console.log("compareTry =", compareTry);
+			console.log("exactMatchCount=", exactMatchCount);
+			console.log("partialMatchCount=", partialMatchCount);
+
+
+
+
+	// for(i = 0; i < sequenceLength; i++) {
+	// 	if(nestedTryBeadArray[currentTry-1][i] === solutionBeadNames[i]) {
+	// 		exactMatchCount++;
+	// 	} else {
+	// 	};
+	// };
 
 	console.log("exact match count =", exactMatchCount);
 	if(exactMatchCount === 4) {
 		console.log("need to run the gameWon function");
 	}
 
-	console.log(nestedTryBeadArray[currentTry-1]);
+	//console.log(nestedTryBeadArray[currentTry-1]);
 
 		// need to implement currentTry iterator when a turn is finished
 	// perhaps at the end of each selectBead, test to see if current array is full, call
 	// helper functions to score, etc., and then...
 	// currentTry++
-
-
 };
 
-///////////////////////////////////
 
-// LET'S TAKE SOME TURNS ("TRIES") TO FIGURE OUT THE SOLUTION SEQUENCE
+// HEART OF THE GAME: GUESS (DEDUCE?) THE SOLUTION SEQUENCE
 
 let trySequence = function() {
 
 	// Make the "active" cell (that a bead can be assigned to) glow. Default = first cell in the active row.
 	///////
 	glowingCellId = "try" + currentTry + "_" + 1;
-	console.log("initial glowingCellId = " + glowingCellId);
+	//console.log("initial glowingCellId = " + glowingCellId);
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
 
 	// Make the current "try" row a different color and turn on listeners
@@ -183,15 +234,15 @@ let trySequence = function() {
 		document.getElementById(currentBeadId).addEventListener('click', selectBead);
 	}
 
-	console.log("currentTry = " + currentTry);
+	//console.log("currentTry = " + currentTry);
 	//if CurrentTry === 9, gameLost function call
 
-	console.log('final status for glowing cell =', glowingCellId);
-}
+	//console.log('final status for glowing cell =', glowingCellId);
+};
 
 trySequence();
 
-console.log("solutionBeadNames=", solutionBeadNames);
+//console.log("solutionBeadNames=", solutionBeadNames);
 
 
 

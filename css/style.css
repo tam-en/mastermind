@@ -39,8 +39,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-weight: 700;
-/*	background-image: radial-gradient(#649FC9, #A9CECD);
-*/	background-color: #649FC9;
+	background-image: ;
+	background-color: #649FC9;
 }
 
 .centersquare-plain {
@@ -142,10 +142,13 @@ body {
 #score1_2 { grid-area: score1_2 }
 #score1_3 { grid-area: score1_3 }
 #score1_4 { grid-area: score1_4 }
-#tryLabel1 { grid-area: tryLabel1 }
-#try1_2 {grid-area: try1_2 }
-#try1_3 {grid-area: try1_3 }
-#try1_4 {grid-area: try1_4 }
+#tryLabel1 { 
+	grid-area: tryLabel1;
+}
+#try1_1 { grid-area: try1_1 }
+#try1_2 { grid-area: try1_2 }
+#try1_3 { grid-area: try1_3 }
+#try1_4 { grid-area: try1_4 }
 
 #bead1 { grid-area: bead1 }
 #bead2 { grid-area: bead2 }
