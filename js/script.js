@@ -12,21 +12,19 @@ const sequenceLength = 4;
 let activeCellArray = [];
 let beadIdPrefix = "bead"; // this will need to change to "dtopBead" for desktop layout
 let currentTry;
-// let currentCellIterator; // wait, am I still using this
 let glowingCellId;
 let glowingCellPosition = 1;
 let glowingBeadId;
 
 // GLOBAL ARRAYS
-let solutionBeadArray = [];
-let solutionSequence = []; //array of numbers corresponding to solution sequence
+//let solutionSequence = []; //array of numbers corresponding to solution sequence
 let solutionBeadNames = [];
 
-let temporaryTryBeadArray = ["", "", "", ""];
+//let temporaryTryBeadArray = ["", "", "", ""];
 let nestedTryBeadArray = [
-["", "", "", ""],
-["", "", "", ""],
-["", "", "", ""],
+["", "", "", ""], // index 0 = 1st try bead sequence
+["", "", "", ""], // index 1 = 2nd try bead sequence
+["", "", "", ""], // etc. ...
 ["", "", "", ""],
 ["", "", "", ""],
 ["", "", "", ""],
@@ -35,9 +33,9 @@ let nestedTryBeadArray = [
 ];
 
 let nestedTryScores = [
-["", "", "", ""],
-["", "", "", ""],
-["", "", "", ""],
+["", "", "", ""], // index 0 = try 1 scores
+["", "", "", ""], // index 1 = try 2 scores
+["", "", "", ""], // etc. ...
 ["", "", "", ""],
 ["", "", "", ""],
 ["", "", "", ""],
@@ -48,7 +46,6 @@ let nestedTryScores = [
 // LET'S GET THIS GAME STARTED
 let initializeGame = function() {
 
-	// STILL TO DO: Clear global variable arrays
 	currentTry = 1;
 
 	//initialize nestedTryBeadArray and nestedTryScores
@@ -56,27 +53,31 @@ let initializeGame = function() {
 		for (z = 0; z < sequenceLength; z++) {
 			nestedTryBeadArray[i][z] = "";
 		}
-	}
-	console.log("nestedTryBeadArray=", nestedTryBeadArray);
+	};
+
 	for (i = 0; i < numOfTries; i++) {
 		for (z = 0; z < sequenceLength; z++) {
 			nestedTryScores[i][z] = "";
 		}
-	}
-	console.log("nestedTryScores=", nestedTryScores);
+	};
 
 	// Randomly assign solutionSequence
 	for (i = 0; i < sequenceLength; i++ ) {
+		var solutionSequence =[];
 		solutionSequence[i] = Math.floor(Math.random() * 6) + 1;
 		solutionBeadNames[i] = "bead" + solutionSequence[i];
 		var currentBead = './img/bead' + solutionSequence[i] + '.png';
 		var currentTargetImgId = 'solImg' + (i + 1);
 		document.getElementById(currentTargetImgId).setAttribute("src", currentBead);
 	};
-	// Populate solutionBeadArray
-	for (i = 0; i < numberOfBeads; i++) {
-		solutionBeadArray[i] = "bead" + (i+1);
-	};
+
+	// // Do I even need the next for loop? 
+
+	// // Populate solutionBeadArray
+	// for (i = 0; i < numberOfBeads; i++) {
+	// 	solutionBeadArray[i] = "bead" + (i+1);
+	// };
+
 	console.log('the random secret solution is', solutionSequence);
 	console.log('and the bead names for the solution are', solutionBeadNames);
 };
@@ -98,22 +99,29 @@ let selectBead = function() {
 	document.getElementById(glowingBeadId).style.backgroundColor = activeRowCellColor;			
 	this.style.backgroundImage = glowGradient;
 	glowingBeadId = this.id;
-	let targetTryBeadArray = "try" + currentTry + "beadArray";
-	temporaryTryBeadArray[glowingCellPosition -1] = glowingBeadId;
+
+	nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = glowingBeadId;
+	var exactMatchCount = 0;
 	for(i = 0; i < sequenceLength; i++) {
-		if(temporaryTryBeadArray[i] === solutionBeadNames[i]) {
-			console.log("index " + i + " matches...gameOver");
+		if(nestedTryBeadArray[currentTry-1][i] === solutionBeadNames[i]) {
+			exactMatchCount++;
 		} else {
-			console.log('index' + i + "doesn't match ... onto next turn");
 		};
 	};
+
+
+	console.log("exact match count =", exactMatchCount);
+	if(exactMatchCount === 4) {
+		console.log("need to run the gameWon function");
+	}
+
+	console.log(nestedTryBeadArray[currentTry-1]);
 
 
 	// need to implement currentTry iterator when a turn is finished
 	// perhaps at the end of each selectBead, test to see if current array is full, call
 	// helper functions to score, etc., and then...
 	// currentTry++
-
 };
 
 ///////////////////////////////////
@@ -127,7 +135,6 @@ let trySequence = function() {
 	glowingCellId = "try" + currentTry + "_" + 1;
 	console.log("initial glowingCellId = " + glowingCellId);
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
-	let currentTryObject = "try" + currentTry + "beadObject";
 
 	// Make the current "try" row a different color and turn on listeners
 	for (i = 0; i < sequenceLength; i++) {
@@ -145,17 +152,17 @@ let trySequence = function() {
 		glowingBeadId = currentBeadId;
 		document.getElementById(currentBeadId).style.backgroundColor = activeRowCellColor;
 		document.getElementById(currentBeadId).addEventListener('click', selectBead);
-
 	}
 
 	console.log("currentTry = " + currentTry);
 	//if CurrentTry === 9, gameLost function call
 
 	console.log('final status for glowing cell =', glowingCellId);
-
 }
 
 trySequence();
+
+console.log("solutionBeadNames=", solutionBeadNames);
 
 
 
