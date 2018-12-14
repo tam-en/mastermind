@@ -11,8 +11,11 @@ const sequenceLength = 4;
 let activeCellArray = []; 
 let beadIdPrefix = "bead"; // this will need to change to "dtopBead" for desktop layout
 let currentTry = 0;
+let currentCellId;
+let previousCellId;
 let glowingCellId;
-let glowingCellPosition = 1;
+let glowingCellPosition;
+let currentBeadId = "bead2";
 let glowingBeadId;
 
 // GLOBAL ARRAYS
@@ -68,9 +71,51 @@ let initializeGame = function() {
 		document.getElementById(currentTargetImgId).setAttribute("src", currentBead);
 	};
 
+	// Turn on bead listeners
+	for (z = 0; z < numberOfBeads; z++) {
+		currentBeadId = beadIdPrefix + (z + 1);
+		document.getElementById(currentBeadId).style.backgroundColor = activeRowCellColor;
+		document.getElementById(currentBeadId).addEventListener('click', function(){
+			nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = this.id;
+			console.log("nestedTryBeadArray[currentTry-1][glowingCellPosition-1]", nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
+			currentBeadId = this.id;
+			glowingBeadId = this.id;
+
+			console.log("from annon func for bead click, currentTry (", currentTry, ") nestedTryBeadArray[currentTry-1]:", nestedTryBeadArray[currentTry-1]);
+			selectBeadVisuals(this.id);
+
+
+		});
+	};
+
+	// Turn on listeners for all of the try (i.e. guess) cells
+	let targetCellId;
+	for (z=0; z < numOfTries; z++) {
+		for (i = 0; i < sequenceLength; i++) {
+			targetCellId = "try" + (z + 1) + "_" + (i+1);
+			//activeCellArray[i] = targetCellId;
+			document.getElementById(targetCellId).addEventListener('click', function() {
+				if(activeCellArray.includes(this.id)) {
+					previousCellId = currentCellId;
+					currentCellId = this.id;
+					glowingCellId = this.id;
+					//document.getElementById(currentCellId).style.backgroundImage = '';
+					makeCellGlow(this.id);
+				};
+			});
+		};
+	};
+
+	// Give the first row active color
+	for (i=0; i<sequenceLength; i++) {
+		targetCellId = "try" + (currentTry+1) + "_" + (i+1);
+		document.getElementById(targetCellId).style.backgroundColor = activeRowCellColor;
+	};
 };
 
 initializeGame();
+
+console.log("start of game nested array for currentTry (", currentTry, ") nestedTryBeadArray[currentTry-1]:", nestedTryBeadArray[currentTry-1]);
 
 /////////////////////////////// helper functions. . . .
 
@@ -82,26 +127,41 @@ let displaySubmitBtn = function() {
 	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
 }
 
-// let assignGlowToCell = function() {
-// 	document.getElementById(glowingCellId).style.backgroundImage = '';
-// 	cell.style.backgroundImage = glowGradient;
-// 	glowingCellId = cell.id;
-// 	glowingCellPosition = cell.id.toString().split('').pop();
-// 	console.log("glowingCellId=", glowingCellId, "and position is", glowingCellPosition);
-// };
+function makeCellGlow(cell) {
 
-let activeCellFunc = function() {
+	// console.log("zzz beginning of makeCellGlow, currentCellId=", currentCellId);
+	// console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	// console.log("");
 
-}
+	document.getElementById(previousCellId).style.backgroundImage = '';
+	glowingCellPosition = Number(glowingCellId.toString().split('').pop());
 
-let selectBead = function() {
+	document.getElementById(cell).style.backgroundImage = glowGradient;
+	glowingCellId = cell;
+
+	// console.log("zzz END of makeCellGlow, currentCellId=", currentCellId);
+	// console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	// console.log("");
+};
+
+function selectBeadVisuals(bead) {
+
+	// console.log("zzz beginning of selectBeadVisuals function, currentCellId=", currentCellId);
+	// console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	// console.log("");
 
 	// Store the clicked bead Id as "glowingBeadId" and make it glow (well, sort of) 
-	document.getElementById(glowingBeadId).style.backgroundImage = '';
-	document.getElementById(glowingBeadId).style.backgroundColor = activeRowCellColor;			
-	this.style.backgroundImage = glowGradient;
-	glowingBeadId = this.id;
-	nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = glowingBeadId;
+	if(glowingBeadId) { 
+		document.getElementById(glowingBeadId).style.backgroundImage = '';
+		document.getElementById(glowingBeadId).style.backgroundColor = activeRowCellColor;	
+	};
+
+	glowingBeadId = bead;
+	document.getElementById(glowingBeadId).style.backgroundImage = glowGradient;
+
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
 
@@ -123,6 +183,12 @@ let selectBead = function() {
 };
 
 let compareTryToSolution = function() {
+
+	console.log("zzz beginning of compareTryToSolution function, currentCellId=", currentCellId);
+	console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	console.log("");
+
 
 	// Turn off the submit button now that try array has been submitted
 
@@ -174,50 +240,44 @@ let compareTryToSolution = function() {
 		console.log("need to run the gameWon function");
 	};
 
+	// do I need to next these so that changeActiveRow isn't called after gameWon function runs?
+
 	if(currentTry <= 8) {
-		upTheRow();
+		changeActiveRow();
 	};
 };
 
 
 
-let upTheRow = function() {
+let changeActiveRow = function() {
 	// turn off listeners and light colors in currentTry-1 row.
-	// document.getElementById(glowingCellId).style.backgroundColor = cellColor;
-	// document.getElementById(currentTargetImgId).removeAttribute("src", selectedBeadPng);
 
-	// let glowingCellPosition = 1;
-	// let glowingCellId = "try" + currentTry + "_" + glowingCellPosition;
+	console.log("zzz beginning of changeActiveRow function, currentCellId=", currentCellId);
+	//console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	console.log("");
 
-	let currCellId;
+
+	glowingCellPosition = 1;
+	let glowingCellId = "try" + currentTry + "_" + glowingCellPosition;
+
 	for (i = 0; i < sequenceLength; i++) {
-		currCellId = "try" + (currentTry) + "_" + (i+1);
-		// console.log("xxx", currCellId);
-		//activeCellArray[i] = currentCellId;
-		document.getElementById(currCellId).style.backgroundColor = cellColor;
-		document.getElementById(currCellId).style.backgroundImage = '';
+		currentCellId = "try" + (currentTry) + "_" + (i+1);
+		document.getElementById(currentCellId).style.backgroundColor = cellColor;
+		document.getElementById(currentCellId).style.backgroundImage = '';
 
 		// document.getElementById(currentCellId).removeEventListener('click', function() {
-		// 	assignGlowToCell(document.getElementById(currentCellId))
-
-		// });
-		document.getElementById(currCellId).removeEventListener('click', function() {
-			document.getElementById(glowingCellId).style.backgroundImage = '';
-			document.getElementById(currCellId).style.backgroundImage = glowGradient;
-			glowingCellId = currCellId;
-			glowingCellPosition = currCellId.toString().split('').pop();		
-		});
-
-
-		// console.log(document.getElementById(currCellId), "hi there!");
+		// 	document.getElementById(glowingCellId).style.backgroundImage = '';
+		// 	document.getElementById(currentCellId).style.backgroundImage = glowGradient;
+		// 	glowingCellId = currentCellId;
+		// 	glowingCellPosition = currentCellId.toString().split('').pop();		
+		// 
 		let currentScoreId = "score" + (currentTry) + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = cellColor;
-		// document.getElementById(currentScoreId).removeEventListener('click', function() {
-		// 	assignGlowToCell(currentCellId)});
 
 	};
 
-	console.log("will this help?", glowingCellId);
+	//console.log("will this help?", glowingCellId);
 
 
 	trySequence();
@@ -234,42 +294,28 @@ let trySequence = function() {
 
 	// Make the "active" cell (that a bead can be assigned to) glow. Default = first cell in the active row.
 	glowingCellId = "try" + currentTry + "_" + 1;
+	currentCellId = glowingCellId;
+
+	console.log("zzz before the meat of the trySequence function, currentCellId=", currentCellId);
+	console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	console.log("");
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
 
-	// Make the current "try" row a different color and turn on listeners
+	// Make the first "try" row a different color and turn on listeners
+
+	let targetCellId;
+
 	for (i = 0; i < sequenceLength; i++) {
-		let currentCellId;
-		currentCellId = "try" + currentTry + "_" + (i+1);
-		activeCellArray[i] = currentCellId;
+		targetCellId = "try" + currentTry + "_" + (i+1);
+		activeCellArray[i] = targetCellId;
 		document.getElementById(currentCellId).style.backgroundColor = activeRowCellColor;
 		let currentScoreId = "score" + currentTry + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = activeRowCellColor;
-		// document.getElementById(activeCellArray[i]).addEventListener('click', function() {
-		// assignGlowToCell(this)});
-
-		document.getElementById(currentCellId).addEventListener('click', function() {
-			document.getElementById(glowingCellId).style.backgroundImage = '';
-			document.getElementById(currentCellId).style.backgroundImage = glowGradient;
-			glowingCellId = currentCellId;
-			glowingCellPosition = currentCellId.toString().split('').pop();
-
-		});
+		// document.getElementById(targetCellId).addEventListener('click', makeCellGlow);
 	};
 
-	for (z = 0; z < numberOfBeads; z++) {
-		let currentBeadId = beadIdPrefix + (z + 1);
-		glowingBeadId = currentBeadId;
-		document.getElementById(currentBeadId).style.backgroundColor = activeRowCellColor;
-		document.getElementById(currentBeadId).addEventListener('click', selectBead);
-	}
-
-	//console.log("currentTry = " + currentTry);
-	//if CurrentTry === 9, gameLost function call
-
-	//console.log('final status for glowing cell =', glowingCellId);
 };
 
 trySequence();
-
-//console.log("solutionBeadNames=", solutionBeadNames);
 
