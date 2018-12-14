@@ -78,7 +78,7 @@ let initializeGame = function() {
 		document.getElementById(currentBeadId).style.backgroundColor = activeRowCellColor;
 		document.getElementById(currentBeadId).addEventListener('click', function(){
 			nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = this.id;
-			console.log("nestedTryBeadArray[currentTry-1][glowingCellPosition-1]", nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
+			// console.log("nestedTryBeadArray[currentTry-1][glowingCellPosition-1]", nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
 			previousGlowingBeadId = glowingBeadId;
 			currentBeadId = this.id;
 			glowingBeadId = this.id;
@@ -112,6 +112,7 @@ let initializeGame = function() {
 
 initializeGame();
 
+// DISPLAY SUBMIT BUTTON ONCE TRY ROW IS FULL
 let displaySubmitBtn = function() {
 	var targetLabelId = "tryLabel" + currentTry;
 	document.getElementById(targetLabelId).style.backgroundImage = glowGradient;
@@ -120,6 +121,7 @@ let displaySubmitBtn = function() {
 	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
 }
 
+// MAKE A CELL "GLOW" (SORT OF) WHEN IT'S CLICKED ON
 function makeCellGlow(cell) {
 	document.getElementById(previousCellId).style.backgroundImage = '';
 	glowingCellPosition = Number(glowingCellId.toString().split('').pop());
@@ -128,6 +130,7 @@ function makeCellGlow(cell) {
 	glowingCellId = cell;
 };
 
+// MAKE A CLICKED BEAD "GLOW" WHEN SELECTED, REVERT TO REGULAR BACKGROUND WHEN ANOTHER IS SELECTED
 function selectBeadVisuals(bead) {
 	if(previousGlowingBeadId) { 
 		document.getElementById(previousGlowingBeadId).style.backgroundImage = '';
@@ -158,7 +161,6 @@ function selectBeadVisuals(bead) {
 };
 
 let compareTryToSolution = function() {
-
 	// Turn off the submit button now that try array has been submitted
 	var targetLabelId = "tryLabel" + currentTry;
 	document.getElementById(targetLabelId).textContent = currentTry;
@@ -171,10 +173,6 @@ let compareTryToSolution = function() {
 	for(i=0; i<sequenceLength; i++) {
 		copyOfSolution[i] = solutionBeadNames[i];
 	};
-
-	console.log("1. nestedTryBeadArray[currentTry-1]=", nestedTryBeadArray[currentTry-1])
-
-
 	let compareSolution = new Array(4);     // temp array to hold elements that have been scored/removed from copyOfSolution
 	let copyOfTryArray = new Array(4); // because we can't mess with the actual submitted "try" array
 	for(i=0; i<sequenceLength; i++) {
@@ -206,13 +204,12 @@ let compareTryToSolution = function() {
 		}
 	};
 
-	console.log("2. nestedTryBeadArray[currentTry-1]=", nestedTryBeadArray[currentTry-1])
 
-
-	console.log("copyOfSolution array=", copyOfSolution);
-	console.log("compareSolution array=", compareSolution);
-	console.log("copyOfTryArray =", copyOfTryArray);
-	console.log("compareTry =", compareTry);
+	// console.log("2. nestedTryBeadArray[currentTry-1]=", nestedTryBeadArray[currentTry-1])
+	// console.log("copyOfSolution array=", copyOfSolution);
+	// console.log("compareSolution array=", compareSolution);
+	// console.log("copyOfTryArray =", copyOfTryArray);
+	// console.log("compareTry =", compareTry);
 	console.log("exactMatchCount=", exactMatchCount);
 	console.log("partialMatchCount=", partialMatchCount);
 
@@ -223,19 +220,44 @@ let compareTryToSolution = function() {
 	// do I need to next these so that changeActiveRow isn't called after gameWon function runs?
 
 	if(currentTry <= 8) {
+		populateScoreCells(exactMatchCount, partialMatchCount);
 		changeActiveRow();
 	};
 };
 
+function populateScoreCells(exactMatches, partialMatches) {
+	let tempScoreImgArr =[];
 
+	//id="score1_1"
 
+	for(i=0; i<exactMatches; i++) {
+		tempScoreImgArr.push("./img/exactMatch.png");
+	};
+	for(i=0; i<partialMatches; i++) {
+		tempScoreImgArr.push("./img/partialMatch.png");
+	};
+	console.log("tempScoreImgArr=", tempScoreImgArr);
+	let targetCellId;
+	let scoreImg;
+	for(i=0; i < tempScoreImgArr.length; i++) {
+		targetCellId = "score" + currentTry + "_" + (i+1) + "img";
+		scoreImg = tempScoreImgArr[i];
+		console.log(tempScoreImgArr[i]);
+		console.log("currentTry=", currentTry);
+		document.getElementById(targetCellId).setAttribute("src", scoreImg);
+
+	};
+
+};
+
+// ONCE A "TRY" ROW HAS BEEN SUBMITTED FOR SCORING, TURN THE ROW BACK TO REGULAR COLOR, HIGHLIGHT NEXT ROW
 let changeActiveRow = function() {
 	// turn off listeners and light colors in currentTry-1 row.
 
-	console.log("zzz beginning of changeActiveRow function, currentCellId=", currentCellId);
-	//console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
-	console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
-	console.log("");
+	// console.log("zzz beginning of changeActiveRow function, currentCellId=", currentCellId);
+	// //console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	// console.log("");
 
 
 	glowingCellPosition = 1;
@@ -248,30 +270,14 @@ let changeActiveRow = function() {
 		currentCellId = "try" + (currentTry+1) + "_" + (i+1);
 		document.getElementById(currentCellId).style.backgroundColor = activeRowCellColor;
 
-
-
-		// document.getElementById(currentCellId).removeEventListener('click', function() {
-		// 	document.getElementById(glowingCellId).style.backgroundImage = '';
-		// 	document.getElementById(currentCellId).style.backgroundImage = glowGradient;
-		// 	glowingCellId = currentCellId;
-		// 	glowingCellPosition = currentCellId.toString().split('').pop();		
-		// 
 		let currentScoreId = "score" + (currentTry) + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = cellColor;
-
 	};
-
-	//console.log("will this help?", glowingCellId);
-
-
 	trySequence();
 };
 
 // HEART OF THE GAME: GUESS (DEDUCE?) THE SOLUTION SEQUENCE
-
 let trySequence = function() {
-
-
 	// Initialize nestedTryBeadArray[currentTry-1], glowingCellPosition = 1, and increment currentTry:
 	nestedTryBeadArray[currentTry-1] = [];
 	glowingCellPosition = 1;
@@ -281,14 +287,13 @@ let trySequence = function() {
 	glowingCellId = "try" + currentTry + "_" + 1;
 	currentCellId = glowingCellId;
 
-	console.log("zzz before the meat of the trySequence function, currentCellId=", currentCellId);
-	console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
-	console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
-	console.log("");
+	// console.log("zzz before the meat of the trySequence function, currentCellId=", currentCellId);
+	// console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
+	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
+	// console.log("");
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
 
 	// Make the first "try" row a different color and turn on listeners
-
 	let targetCellId;
 
 	for (i = 0; i < sequenceLength; i++) {
@@ -303,4 +308,3 @@ let trySequence = function() {
 };
 
 trySequence();
-
