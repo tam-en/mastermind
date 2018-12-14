@@ -49,20 +49,29 @@ let nestedTryScores = [
 // LET'S GET THIS GAME STARTED
 let initializeGame = function() {
 
-	//initialize nestedTryBeadArray and nestedTryScores
+	// Initialize nestedTryBeadArray:
 	for (i = 0; i < numOfTries; i++) {
 		for (z = 0; z < sequenceLength; z++) {
 			nestedTryBeadArray[i][z] = "";
 		}
 	};
 
+	// Initialize nestedTryScores:
 	for (i = 0; i < numOfTries; i++) {
 		for (z = 0; z < sequenceLength; z++) {
 			nestedTryScores[i][z] = "";
 		}
 	};
 
-	// Randomly assign solutionSequence
+	// Hide solution divs:
+	for(i=1; i < (sequenceLength + 1); i++) {
+		let prefix = "solution"
+		let targetCellId = prefix + i;
+		console.log("targetCellId", targetCellId);
+		document.getElementById(targetCellId).style.visibility = "hidden";
+	};
+
+	// Randomly assign solutionSequence:
 	for (i = 0; i < sequenceLength; i++ ) {
 		var solutionSequence =[];
 		solutionSequence[i] = Math.floor(Math.random() * 6) + 1;
@@ -108,6 +117,9 @@ let initializeGame = function() {
 		targetCellId = "try" + (currentTry+1) + "_" + (i+1);
 		document.getElementById(targetCellId).style.backgroundColor = activeRowCellColor;
 	};
+
+trySequence();
+
 };
 
 initializeGame();
@@ -213,23 +225,22 @@ let compareTryToSolution = function() {
 	console.log("exactMatchCount=", exactMatchCount);
 	console.log("partialMatchCount=", partialMatchCount);
 
-	if(exactMatchCount === 4) {
-		console.log("need to run the gameWon function");
-	};
-
-	// do I need to next these so that changeActiveRow isn't called after gameWon function runs?
-
-	if(currentTry <= 8) {
+	if (currentTry <= 8) {
 		populateScoreCells(exactMatchCount, partialMatchCount);
-		changeActiveRow();
+		if(exactMatchCount === 4) {
+			gameWon();
+		} else {
+			if(currentTry === 8) {
+				gameLost();
+			} else {
+				changeActiveRow();
+			}
+		}
 	};
 };
 
 function populateScoreCells(exactMatches, partialMatches) {
 	let tempScoreImgArr =[];
-
-	//id="score1_1"
-
 	for(i=0; i<exactMatches; i++) {
 		tempScoreImgArr.push("./img/exactMatch.png");
 	};
@@ -245,9 +256,7 @@ function populateScoreCells(exactMatches, partialMatches) {
 		console.log(tempScoreImgArr[i]);
 		console.log("currentTry=", currentTry);
 		document.getElementById(targetCellId).setAttribute("src", scoreImg);
-
 	};
-
 };
 
 // ONCE A "TRY" ROW HAS BEEN SUBMITTED FOR SCORING, TURN THE ROW BACK TO REGULAR COLOR, HIGHLIGHT NEXT ROW
@@ -277,7 +286,7 @@ let changeActiveRow = function() {
 };
 
 // HEART OF THE GAME: GUESS (DEDUCE?) THE SOLUTION SEQUENCE
-let trySequence = function() {
+function trySequence() {
 	// Initialize nestedTryBeadArray[currentTry-1], glowingCellPosition = 1, and increment currentTry:
 	nestedTryBeadArray[currentTry-1] = [];
 	glowingCellPosition = 1;
@@ -307,4 +316,41 @@ let trySequence = function() {
 
 };
 
-trySequence();
+
+let gameOver = function() {
+
+	for(i=1; i < (sequenceLength + 1); i++) {
+		let prefix = "solution"
+		let targetCellId = prefix + i;
+		console.log("targetCellId", targetCellId);
+		document.getElementById(targetCellId).style.visibility = "visible";
+	};
+	// document.getElementById()
+
+	// document.getElementsByClassName("hide_me")[0].style.visibility = "visible";
+	console.log("want to play again?");
+	//reveal solution sequence.
+	//try again? message (if yes, run initialize function)
+
+};
+
+let gameLost = function() {
+
+	console.log("Oh dang, you lost.");
+	gameOver();
+
+	// run gameOver function
+	// display some kind of "you just got caught still guessing at the end of the game" message
+
+};
+
+let gameWon = function() {
+
+	console.log("Hot damn, you win!");
+	gameOver();
+	// run gameOver function
+	// display some kind of "yay, you win!" message
+	// play happy sounds?
+
+};
+

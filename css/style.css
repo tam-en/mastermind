@@ -7,10 +7,11 @@ body {
 
 .grid-container {
 	display: grid;
-	position: relative;
-	grid-template-rows: 50px 50px repeat(17, 25px) 50px;
-	grid-template-columns: 1fr 50px 25px 23px 23px repeat(5, 50px) 1fr;
-	grid-template-areas: 
+/*	position: relative;
+*/	grid-template-rows: 46px 46px repeat(16, 22px) 6px 46px;
+	grid-template-columns: 1fr 0px 0px 22px 22px repeat(5, 46px) 1fr;
+/*	grid-template-columns: 1fr 50px 25px 23px 23px repeat(5, 50px) 1fr;
+*/	grid-template-areas: 
 		". . . heady heady heady heady heady heady heady ."
 		". . . tips tips tips solution1 solution2 solution3 solution4 ."
 		". . . score8_1 score8_2 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
@@ -32,6 +33,14 @@ body {
 		". . . . . . . . . . ."
 		". . . bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
 	grid-gap: 3px;
+	/*margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .centersquare {
@@ -73,10 +82,10 @@ body {
 #score8_3 { grid-area: score8_3; }
 #score8_4 { grid-area: score8_4; }
 #tryLabel8 { grid-area: tryLabel8 }
-#try8_1 {grid-area: try8_1 }
-#try8_2 {grid-area: try8_2 }
-#try8_3 {grid-area: try8_3 }
-#try8_4 {grid-area: try8_4 }
+#try8_1 { grid-area: try8_1 }
+#try8_2 { grid-area: try8_2 }
+#try8_3 { grid-area: try8_3 }
+#try8_4 { grid-area: try8_4 }
 
 #score7_1 { grid-area: score7_1 }
 #score7_2 { grid-area: score7_2 }
@@ -93,58 +102,56 @@ body {
 #score6_3 { grid-area: score6_3 }
 #score6_4 { grid-area: score6_4 }
 #tryLabel6 { grid-area: tryLabel6 }
-#try6_1 {grid-area: try6_1 }
-#try6_2 {grid-area: try6_2 }
-#try6_3 {grid-area: try6_3 }
-#try6_4 {grid-area: try6_4 }
+#try6_1 { grid-area: try6_1 }
+#try6_2 { grid-area: try6_2 }
+#try6_3 { grid-area: try6_3 }
+#try6_4 { grid-area: try6_4 }
 
 #score5_1 { grid-area: score5_1 }
 #score5_2 { grid-area: score5_2 }
 #score5_3 { grid-area: score5_3 }
 #score5_4 { grid-area: score5_4 }
 #tryLabel5 { grid-area: tryLabel5 }
-#try5_1 {grid-area: try5_1 }
-#try5_2 {grid-area: try5_2 }
-#try5_3 {grid-area: try5_3 }
-#try5_4 {grid-area: try5_4 }
+#try5_1 { grid-area: try5_1 }
+#try5_2 { grid-area: try5_2 }
+#try5_3 { grid-area: try5_3 }
+#try5_4 { grid-area: try5_4 }
 
 #score4_1 { grid-area: score4_1 }
 #score4_2 { grid-area: score4_2 }
 #score4_3 { grid-area: score4_3 }
 #score4_4 { grid-area: score4_4 }
 #tryLabel4 { grid-area: tryLabel4 }
-#try4_1 {grid-area: try4_1 }
-#try4_2 {grid-area: try4_2 }
-#try4_3 {grid-area: try4_3 }
-#try4_4 {grid-area: try4_4 }
+#try4_1 { grid-area: try4_1 }
+#try4_2 { grid-area: try4_2 }
+#try4_3 { grid-area: try4_3 }
+#try4_4 { grid-area: try4_4 }
 
 #score3_1 { grid-area: score3_1 }
 #score3_2 { grid-area: score3_2 }
 #score3_3 { grid-area: score3_3 }
 #score3_4 { grid-area: score3_4 }
 #tryLabel3 { grid-area: tryLabel3 }
-#try3_1 {grid-area: try3_1 }
-#try3_2 {grid-area: try3_2 }
-#try3_3 {grid-area: try3_3 }
-#try3_4 {grid-area: try3_4 }
+#try3_1 { grid-area: try3_1 }
+#try3_2 { grid-area: try3_2 }
+#try3_3 { grid-area: try3_3 }
+#try3_4 { grid-area: try3_4 }
 
 #score2_1 { grid-area: score2_1 }
 #score2_2 { grid-area: score2_2 }
 #score2_3 { grid-area: score2_3 }
 #score2_4 { grid-area: score2_4 }
 #tryLabel2 { grid-area: tryLabel2 }
-#try2_1 {grid-area: try2_1 }
-#try2_2 {grid-area: try2_2 }
-#try2_3 {grid-area: try2_3 }
-#try2_4 {grid-area: try2_4 }
+#try2_1 { grid-area: try2_1 }
+#try2_2 { grid-area: try2_2 }
+#try2_3 { grid-area: try2_3 }
+#try2_4 { grid-area: try2_4 }
 
 #score1_1 { grid-area: score1_1 }
 #score1_2 { grid-area: score1_2 }
 #score1_3 { grid-area: score1_3 }
 #score1_4 { grid-area: score1_4 }
-#tryLabel1 { 
-	grid-area: tryLabel1;
-}
+#tryLabel1 { grid-area: tryLabel1 }
 #try1_1 { grid-area: try1_1 }
 #try1_2 { grid-area: try1_2 }
 #try1_3 { grid-area: try1_3 }
@@ -163,3 +170,5 @@ body {
 #dtopBead4 { grid-area: dtopBead4 }
 #dtopBead5 { grid-area: dtopBead5 }
 #dtopBead6 { grid-area: dtopBead6 }
+
+.hide_me { visibility: visible; }
