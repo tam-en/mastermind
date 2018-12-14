@@ -101,6 +101,7 @@ let firstLoadInitialize = function() {
 					currentCellId = this.id;
 					glowingCellId = this.id;
 					makeCellGlow(this.id);
+
 				};
 			});
 		};
@@ -121,26 +122,20 @@ let reInitialize = function() {
 			let targetImgId = "try" + (i+1) + "_" + (z+1) + "img";
 			let blankie = "./img/blank.png";
 
-			// document.getElementById(targetCellId).setAttribute("src", blankie);
 			document.getElementById(targetCellId).style.backgroundColor = cellColor;
 			document.getElementById(targetImgId).setAttribute("src", blankie);
-			//document.getElementById(targetImgId).style.backgroundColor = cellColor;
+			document.getElementById(targetCellId).style.backgroundImage = "";
 
 			targetCellId = "score" + (i+1) + "_" + (z+1);
 			targetImgId = "score" + (i+1) + "_" + (z+1) + "img";
 
-			// document.getElementById(targetCellId).setAttribute("src", blankie);
-
 			document.getElementById(targetCellId).style.backgroundColor = cellColor;
 			document.getElementById(targetImgId).setAttribute("src", blankie);
-			//document.getElementById(targetImgId).style.backgroundColor = cellColor;
 		};
 	};
 	document.getElementById("tippy").style.backgroundImage = '';
 	document.getElementById("tippy").removeEventListener('click', reInitialize);
 	document.getElementById("tippy").textContent = "help?";
-
-
 	initializeGame();
 };
 
@@ -157,7 +152,6 @@ let displaySubmitBtn = function() {
 function makeCellGlow(cell) {
 	document.getElementById(previousCellId).style.backgroundImage = '';
 	glowingCellPosition = Number(glowingCellId.toString().split('').pop());
-
 	document.getElementById(cell).style.backgroundImage = glowGradient;
 	glowingCellId = cell;
 };
@@ -168,13 +162,10 @@ function selectBeadVisuals(bead) {
 		document.getElementById(previousGlowingBeadId).style.backgroundImage = '';
 		document.getElementById(previousGlowingBeadId).style.backgroundColor = activeRowCellColor;	
 	};
-
 	glowingBeadId = bead;
 	document.getElementById(glowingBeadId).style.backgroundImage = glowGradient;
-
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
-
 	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);
 
 	//test to see if nestedTryBeadArray[currentTry-1] is full, and if so, activate "submit" button
@@ -267,11 +258,8 @@ function populateScoreCells(exactMatches, partialMatches) {
 };
 
 // ONCE A "TRY" ROW HAS BEEN SUBMITTED FOR SCORING, TURN THE ROW BACK TO REGULAR COLOR, HIGHLIGHT NEXT ROW
-let changeActiveRow = function() {
+function changeActiveRow() {
 	// Lighted colors in active (currentTry-1) row.
-	glowingCellPosition = 1;
-	let glowingCellId = "try" + currentTry + "_" + glowingCellPosition;
-
 	for (i = 0; i < sequenceLength; i++) {
 		currentCellId = "try" + (currentTry) + "_" + (i+1);
 		document.getElementById(currentCellId).style.backgroundColor = cellColor;
@@ -281,6 +269,7 @@ let changeActiveRow = function() {
 		let currentScoreId = "score" + (currentTry) + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = cellColor;
 	};
+	glowingCellId = currentCellId;
 	trySequence();
 };
 
@@ -289,59 +278,40 @@ function trySequence() {
 	// Initialize nestedTryBeadArray[currentTry-1], glowingCellPosition = 1, and increment currentTry:
 	nestedTryBeadArray[currentTry-1] = [];
 	glowingCellPosition = 1;
-
 	currentTry ++;
 
 	// Make the "active" cell (that a bead can be assigned to) glow. Default = first cell in the active row.
 	glowingCellId = "try" + currentTry + "_" + 1;
 	currentCellId = glowingCellId;
-
-
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
-
-
 
 	// Make the currentTry "try" row & score cells a different color 
 	let targetCellId;
-
 	for (i = 0; i < sequenceLength; i++) {
 		targetCellId = "try" + currentTry + "_" + (i+1);
 		activeCellArray[i] = targetCellId;
 		document.getElementById(currentCellId).style.backgroundColor = activeRowCellColor;
 		let currentScoreId = "score" + currentTry + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = activeRowCellColor;
-		// document.getElementById(targetCellId).addEventListener('click', makeCellGlow);
 	};
-
 };
 
 // GAME OVER (WIN OR LOSE)
 let gameOver = function() {
-
-
 	// Reveal solution sequence
 	for(i=1; i < (sequenceLength + 1); i++) {
 		let prefix = "solution"
 		let targetCellId = prefix + i;
 		document.getElementById(targetCellId).style.visibility = "visible";
 	};
-
-	// 
 	document.getElementById("tippy").style.backgroundImage = glowGradient;
 	document.getElementById("tippy").addEventListener('click', reInitialize);
-
-	//reveal solution sequence.
-	//try again? message (if yes, run initialize function)
 };
 
 // GAME LOST
 let gameLost = function() {
-
 	document.getElementById("tippy").textContent = "LOSE. Play again?";
 	gameOver();
-
-	// run gameOver function
-	// display some kind of "you just got caught still guessing at the end of the game" message
 };
 
 // GAME WON
