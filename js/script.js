@@ -10,7 +10,7 @@ const sequenceLength = 4;
 // GLOBAL VARIABLES
 let activeCellArray = []; 
 let beadIdPrefix = "bead"; // this will need to change to "dtopBead" for desktop layout
-let currentTry = 0;
+let currentTry;
 let currentCellId;
 let previousCellId;
 let glowingCellId;
@@ -46,8 +46,10 @@ let nestedTryScores = [
 ["", "", "", ""]
 ];
 
+
 // LET'S GET THIS GAME STARTED
 let initializeGame = function() {
+	currentTry = 0;
 
 	// Initialize nestedTryBeadArray:
 	for (i = 0; i < numOfTries; i++) {
@@ -115,6 +117,7 @@ let initializeGame = function() {
 	// Give the first row active color
 	for (i=0; i<sequenceLength; i++) {
 		targetCellId = "try" + (currentTry+1) + "_" + (i+1);
+		console.log("currentTry", currentTry, "targetCellId", targetCellId);
 		document.getElementById(targetCellId).style.backgroundColor = activeRowCellColor;
 	};
 
@@ -123,6 +126,36 @@ trySequence();
 };
 
 initializeGame();
+
+
+
+let triggerNewStart = function() {
+	document.getElementById("tippy").textContent = "play now!";
+	document.getElementById("tippy").style.backgroundImage = glowGradient;
+	document.getElementById("tippy").addEventListener('click', initializeGame());
+};
+
+let wipeBoard = function() {
+
+	// Wipe beads off the try rows
+	for(i=0; i<numOfTries; i++) {
+		for (z=0; z<sequenceLength; z++) {
+
+		}
+	};
+
+	// Wipe score pegs off the score cells
+	for(i=0; i<numOfTries; i++) {
+		for (z=0; z<sequenceLength; z++) {
+
+		}
+	};
+	
+
+	triggerStart();
+	
+}
+
 
 // DISPLAY SUBMIT BUTTON ONCE TRY ROW IS FULL
 let displaySubmitBtn = function() {
@@ -216,15 +249,6 @@ let compareTryToSolution = function() {
 		}
 	};
 
-
-	// console.log("2. nestedTryBeadArray[currentTry-1]=", nestedTryBeadArray[currentTry-1])
-	// console.log("copyOfSolution array=", copyOfSolution);
-	// console.log("compareSolution array=", compareSolution);
-	// console.log("copyOfTryArray =", copyOfTryArray);
-	// console.log("compareTry =", compareTry);
-	console.log("exactMatchCount=", exactMatchCount);
-	console.log("partialMatchCount=", partialMatchCount);
-
 	if (currentTry <= 8) {
 		populateScoreCells(exactMatchCount, partialMatchCount);
 		if(exactMatchCount === 4) {
@@ -261,14 +285,7 @@ function populateScoreCells(exactMatches, partialMatches) {
 
 // ONCE A "TRY" ROW HAS BEEN SUBMITTED FOR SCORING, TURN THE ROW BACK TO REGULAR COLOR, HIGHLIGHT NEXT ROW
 let changeActiveRow = function() {
-	// turn off listeners and light colors in currentTry-1 row.
-
-	// console.log("zzz beginning of changeActiveRow function, currentCellId=", currentCellId);
-	// //console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
-	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
-	// console.log("");
-
-
+	// Lighted colors in active (currentTry-1) row.
 	glowingCellPosition = 1;
 	let glowingCellId = "try" + currentTry + "_" + glowingCellPosition;
 
@@ -278,7 +295,6 @@ let changeActiveRow = function() {
 		document.getElementById(currentCellId).style.backgroundImage = '';
 		currentCellId = "try" + (currentTry+1) + "_" + (i+1);
 		document.getElementById(currentCellId).style.backgroundColor = activeRowCellColor;
-
 		let currentScoreId = "score" + (currentTry) + "_" + (i+1);
 		document.getElementById(currentScoreId).style.backgroundColor = cellColor;
 	};
@@ -316,7 +332,6 @@ function trySequence() {
 
 };
 
-
 let gameOver = function() {
 
 	for(i=1; i < (sequenceLength + 1); i++) {
@@ -325,10 +340,9 @@ let gameOver = function() {
 		console.log("targetCellId", targetCellId);
 		document.getElementById(targetCellId).style.visibility = "visible";
 	};
-	// document.getElementById()
-
-	// document.getElementsByClassName("hide_me")[0].style.visibility = "visible";
 	console.log("want to play again?");
+
+	wipeBoard();
 	//reveal solution sequence.
 	//try again? message (if yes, run initialize function)
 
@@ -345,12 +359,7 @@ let gameLost = function() {
 };
 
 let gameWon = function() {
-
 	console.log("Hot damn, you win!");
 	gameOver();
-	// run gameOver function
-	// display some kind of "yay, you win!" message
-	// play happy sounds?
-
 };
 
