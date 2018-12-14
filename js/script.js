@@ -46,30 +46,14 @@ let nestedTryScores = [
 ["", "", "", ""]
 ];
 
-
-// LET'S GET THIS GAME STARTED
+// EVERY TIME GAME STARTS OR RESTARTS
 let initializeGame = function() {
+
 	currentTry = 0;
-
-	// Initialize nestedTryBeadArray:
-	for (i = 0; i < numOfTries; i++) {
-		for (z = 0; z < sequenceLength; z++) {
-			nestedTryBeadArray[i][z] = "";
-		}
-	};
-
-	// Initialize nestedTryScores:
-	for (i = 0; i < numOfTries; i++) {
-		for (z = 0; z < sequenceLength; z++) {
-			nestedTryScores[i][z] = "";
-		}
-	};
-
 	// Hide solution divs:
 	for(i=1; i < (sequenceLength + 1); i++) {
 		let prefix = "solution"
 		let targetCellId = prefix + i;
-		console.log("targetCellId", targetCellId);
 		document.getElementById(targetCellId).style.visibility = "hidden";
 	};
 
@@ -83,20 +67,28 @@ let initializeGame = function() {
 		document.getElementById(currentTargetImgId).setAttribute("src", currentBead);
 	};
 
+	// Give the first row active color
+	for (i=0; i<sequenceLength; i++) {
+		targetCellId = "try" + (currentTry+1) + "_" + (i+1);
+		document.getElementById(targetCellId).style.backgroundColor = activeRowCellColor;
+	};
+	trySequence();
+};
+
+// FIRST TIME GAME LOADS
+let firstLoadInitialize = function() {
 	// Turn on bead listeners
 	for (z = 0; z < numberOfBeads; z++) {
 		currentBeadId = beadIdPrefix + (z + 1);
 		document.getElementById(currentBeadId).style.backgroundColor = activeRowCellColor;
 		document.getElementById(currentBeadId).addEventListener('click', function(){
 			nestedTryBeadArray[currentTry-1][glowingCellPosition-1] = this.id;
-			// console.log("nestedTryBeadArray[currentTry-1][glowingCellPosition-1]", nestedTryBeadArray[currentTry-1][glowingCellPosition-1]);
 			previousGlowingBeadId = glowingBeadId;
 			currentBeadId = this.id;
 			glowingBeadId = this.id;
 			selectBeadVisuals(this.id);
 		});
 	};
-
 	// Turn on listeners for all of the try (i.e. guess) cells
 	let targetCellId;
 	for (z=0; z < numOfTries; z++) {
@@ -113,49 +105,44 @@ let initializeGame = function() {
 			});
 		};
 	};
-
-	// Give the first row active color
-	for (i=0; i<sequenceLength; i++) {
-		targetCellId = "try" + (currentTry+1) + "_" + (i+1);
-		console.log("currentTry", currentTry, "targetCellId", targetCellId);
-		document.getElementById(targetCellId).style.backgroundColor = activeRowCellColor;
-	};
-
-trySequence();
-
+	initializeGame();
 };
+firstLoadInitialize();
 
-initializeGame();
+// 
+let reInitialize = function() {
+	// Give a dark color and blank PNG to all try cells, all score cells
+	for (i = 0; i < numOfTries; i++) {
+		for (z = 0; z < sequenceLength; z++) {
+			nestedTryBeadArray[i][z] = ""; // Initialize nestedTryBeadArray:
+			nestedTryScores[i][z] = "";    // Initialize nestedTryScores;
+
+			let targetCellId = "try" + (i+1) + "_" + (z+1);
+			let targetImgId = "try" + (i+1) + "_" + (z+1) + "img";
+			let blankie = "./img/blank.png";
+
+			// document.getElementById(targetCellId).setAttribute("src", blankie);
+			document.getElementById(targetCellId).style.backgroundColor = cellColor;
+			document.getElementById(targetImgId).setAttribute("src", blankie);
+			//document.getElementById(targetImgId).style.backgroundColor = cellColor;
+
+			targetCellId = "score" + (i+1) + "_" + (z+1);
+			targetImgId = "score" + (i+1) + "_" + (z+1) + "img";
+
+			// document.getElementById(targetCellId).setAttribute("src", blankie);
+
+			document.getElementById(targetCellId).style.backgroundColor = cellColor;
+			document.getElementById(targetImgId).setAttribute("src", blankie);
+			//document.getElementById(targetImgId).style.backgroundColor = cellColor;
+		};
+	};
+	document.getElementById("tippy").style.backgroundImage = '';
+	document.getElementById("tippy").removeEventListener('click', reInitialize);
+	document.getElementById("tippy").textContent = "help?";
 
 
-
-let triggerNewStart = function() {
-	document.getElementById("tippy").textContent = "play now!";
-	document.getElementById("tippy").style.backgroundImage = glowGradient;
-	document.getElementById("tippy").addEventListener('click', initializeGame());
+	initializeGame();
 };
-
-let wipeBoard = function() {
-
-	// Wipe beads off the try rows
-	for(i=0; i<numOfTries; i++) {
-		for (z=0; z<sequenceLength; z++) {
-
-		}
-	};
-
-	// Wipe score pegs off the score cells
-	for(i=0; i<numOfTries; i++) {
-		for (z=0; z<sequenceLength; z++) {
-
-		}
-	};
-	
-
-	triggerStart();
-	
-}
-
 
 // DISPLAY SUBMIT BUTTON ONCE TRY ROW IS FULL
 let displaySubmitBtn = function() {
@@ -164,7 +151,7 @@ let displaySubmitBtn = function() {
 	//document.getElementById(targetLabelId).style.backgroundImage = "url('./img/blank.png')";
 	document.getElementById(targetLabelId).textContent = "GO!";
 	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
-}
+};
 
 // MAKE A CELL "GLOW" (SORT OF) WHEN IT'S CLICKED ON
 function makeCellGlow(cell) {
@@ -200,7 +187,6 @@ function selectBeadVisuals(bead) {
 
 	if(selectedBeadCount === 4) {
 		// make submit button available
-		console.log("all of the bead cells are full!");
 		displaySubmitBtn();
 	};
 };
@@ -271,14 +257,11 @@ function populateScoreCells(exactMatches, partialMatches) {
 	for(i=0; i<partialMatches; i++) {
 		tempScoreImgArr.push("./img/partialMatch.png");
 	};
-	console.log("tempScoreImgArr=", tempScoreImgArr);
 	let targetCellId;
 	let scoreImg;
 	for(i=0; i < tempScoreImgArr.length; i++) {
 		targetCellId = "score" + currentTry + "_" + (i+1) + "img";
 		scoreImg = tempScoreImgArr[i];
-		console.log(tempScoreImgArr[i]);
-		console.log("currentTry=", currentTry);
 		document.getElementById(targetCellId).setAttribute("src", scoreImg);
 	};
 };
@@ -306,19 +289,19 @@ function trySequence() {
 	// Initialize nestedTryBeadArray[currentTry-1], glowingCellPosition = 1, and increment currentTry:
 	nestedTryBeadArray[currentTry-1] = [];
 	glowingCellPosition = 1;
+
 	currentTry ++;
 
 	// Make the "active" cell (that a bead can be assigned to) glow. Default = first cell in the active row.
 	glowingCellId = "try" + currentTry + "_" + 1;
 	currentCellId = glowingCellId;
 
-	// console.log("zzz before the meat of the trySequence function, currentCellId=", currentCellId);
-	// console.log("zzz glowingCellId=", glowingCellId, "glowingCellPosition=");
-	// console.log("zzz", glowingCellPosition, "and glowingBeadId=", glowingBeadId, "and currentBeadId=", currentBeadId);
-	// console.log("");
+
 	document.getElementById(glowingCellId).style.backgroundImage = glowGradient;
 
-	// Make the first "try" row a different color and turn on listeners
+
+
+	// Make the currentTry "try" row & score cells a different color 
 	let targetCellId;
 
 	for (i = 0; i < sequenceLength; i++) {
@@ -332,34 +315,38 @@ function trySequence() {
 
 };
 
+// GAME OVER (WIN OR LOSE)
 let gameOver = function() {
 
+
+	// Reveal solution sequence
 	for(i=1; i < (sequenceLength + 1); i++) {
 		let prefix = "solution"
 		let targetCellId = prefix + i;
-		console.log("targetCellId", targetCellId);
 		document.getElementById(targetCellId).style.visibility = "visible";
 	};
-	console.log("want to play again?");
 
-	wipeBoard();
+	// 
+	document.getElementById("tippy").style.backgroundImage = glowGradient;
+	document.getElementById("tippy").addEventListener('click', reInitialize);
+
 	//reveal solution sequence.
 	//try again? message (if yes, run initialize function)
-
 };
 
+// GAME LOST
 let gameLost = function() {
 
-	console.log("Oh dang, you lost.");
+	document.getElementById("tippy").textContent = "LOSE. Play again?";
 	gameOver();
 
 	// run gameOver function
 	// display some kind of "you just got caught still guessing at the end of the game" message
-
 };
 
+// GAME WON
 let gameWon = function() {
-	console.log("Hot damn, you win!");
+	document.getElementById("tippy").textContent = "WIN! Play again?";
 	gameOver();
 };
 
