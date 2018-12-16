@@ -1,6 +1,6 @@
 // GLOBAL CONSTANTS
 const activeRowCellColor = "#A3B1D1";
-const extraLightColor = "#C4CDE1";
+const extraLightColor = "#DEE3EE";
 const cellColor = "#649FC9";
 const fieldColor = "#6B5CA5";
 const glowGradient = "radial-gradient(white 2%," + activeRowCellColor + " 98%)";
@@ -13,6 +13,7 @@ let activeCellArray = [];
 let beadIdPrefix = "bead"; // this will need to change to "dtopBead" for desktop layout
 let currentTry;
 let currentCellId;
+let displayHelpOnOff = 1;
 let previousCellId;
 let glowingCellId;
 let glowingCellPosition;
@@ -44,6 +45,7 @@ let nestedTryScores = [
 ["", "", "", ""],
 ["", "", "", ""]
 ];
+
 
 // EVERY TIME GAME STARTS OR RESTARTS
 let initializeGame = function() {
@@ -104,6 +106,15 @@ let firstLoadInitialize = function() {
 			});
 		};
 	};
+	document.getElementById("gearImg").addEventListener('click', function(){
+		displayHelpOnOff++;
+		if(displayHelpOnOff % 2 === 0) {
+			document.getElementById("helpWindow").style.visibility = "visible";	
+		} else {
+			document.getElementById("helpWindow").style.visibility = "hidden";				
+		};
+	});
+
 	initializeGame();
 };
 firstLoadInitialize();
@@ -153,6 +164,7 @@ let displaySubmitBtn = function() {
 	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
 };
 
+
 // MAKE A CELL "GLOW" (SORT OF) WHEN IT'S CLICKED ON
 function makeCellGlow(cell) {
 	document.getElementById(previousCellId).style.backgroundImage = '';
@@ -188,6 +200,7 @@ function selectBeadVisuals(bead) {
 		displaySubmitBtn();
 	};
 };
+
 
 let compareTryToSolution = function() {
 	// Turn off the submit button now that try array has been submitted
@@ -321,13 +334,13 @@ let gameOver = function() {
 
 // GAME LOST
 let gameLost = function() {
-	document.getElementById("tippy").innerHTML = "you lost.<br>play again?";
+	document.getElementById("tippy").innerHTML = "OH DANG.<br>play again?";
 	gameOver();
 };
 
 // GAME WON
 let gameWon = function() {
-	document.getElementById("tippy").innerHTML = "you won!<br>play again?";
+	document.getElementById("tippy").innerHTML = "YOU WON!<br>play again?";
 	gameOver();
 };
 

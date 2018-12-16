@@ -6,6 +6,21 @@ body {
 	color: black;
 }
 
+h1 {
+	padding: 6px;
+	text-align: left;
+	font-weight: 600;
+	font-size: 17px;
+}
+
+p {
+	padding: 6px;
+	text-align: left;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.35;
+}
+
 .grid-container {
 	display: grid;
 	grid-template-rows: 44px 6px repeat(16, 20px) 6px 44px;
@@ -40,8 +55,16 @@ body {
 
 #background {
 	grid-area: 1 / 4 / 2 / 8;
-	background-color: #C4CDE1;
+	background-color: #DEE3EE;
 	z-index: 0;
+}
+
+#helpWindow {
+	grid-area: 3 / 4 / 21 / 11;
+	background-color: #DEE3EE;
+	visibility: hidden;
+	z-index: 4;
+	overflow: scroll;
 }
 
 .centersquare {
@@ -67,7 +90,7 @@ body {
 	grid-area: tips; 
 	font-weight: 600;
 	font-family: 'Signika', sans-serif;
-	background-color: #C4CDE1;
+	background-color: #DEE3EE;
 	font-size: 14px;
 	z-index: 2;
 }
@@ -75,7 +98,7 @@ body {
 #gear {
 	grid-area: 1 / 4 / 2 / 6;
 	z-index: 3;
-	background-color: #C4CDE1;
+	background-color: #DEE3EE;
 
 }
 
@@ -85,17 +108,28 @@ body {
 	z-index: 1;
 	text-align: right;
 	font-family: 'Coiny', sans-serif;
-	background-color: #C4CDE1;
+	background-color: #DEE3EE;
 	letter-spacing: .03em;
 } 
 
+#gearImg {
+
+}
 
 
-#solution1 { grid-area: solution1;
-z-index: 4; }
-#solution2 { grid-area: solution2 }
-#solution3 { grid-area: solution3 }
-#solution4 { grid-area: solution4 }
+#solution1 { 
+	grid-area: solution1;
+	z-index: 4; 
+	background-color: #C4CDE1 }
+#solution2 { 
+	grid-area: solution2;
+	background-color: #C4CDE1 }
+#solution3 { 
+	grid-area: solution3;
+	background-color: #C4CDE1 }
+#solution4 { 
+	grid-area: solution4;
+	background-color: #C4CDE1 }
 
 #try8scores {}
 #score8_1 { grid-area: score8_1;}

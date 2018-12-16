@@ -14,7 +14,43 @@
 <!-- TIPPY DIV SHARES ROW WITH SOLUTION DIVS -->
 	<div id="background" class="centersquare"></div>	
 	<div id="tippy" class="centersquare"></div>
-	<div id="gear" class="centersquare"><img src="img/gear.png" width="25px" height="25px"></div>
+	<div id="gear" class="centersquare"><img src="img/gear.png" id= "gearImg" width="25px" height="25px"></div>
+
+<!-- HELP WINDOW (HIDDEN UNTIL CALLED) -->
+	<div id="helpWindow">
+		<p><strong><em>click the gear icon again <br>to close this window</em></strong></p>
+
+		<h1>How to play</h1>
+		<p><strong>Objective</strong><br>
+		Behind the &ldquo;muddleMIND&rdquo; title, there’s a randomly generated sequence of four shapes. Your job is to guess/deduce that sequence. You get eight attempts.<br><br>
+
+		<strong>First attempt</strong><br>
+		Start on row 1 near the bottom of the screen. Click on one of the large boxes to the right of the &ldquo;1&rdquo; and then, to add a shape, click on one of the six shapes at the bottom of the screen.<br><br>Repeat until all four boxes to the right of the &ldquo;1&rdquo; are filled. If you change your mind about what shape you want in a box, simply click that box and select a different shape.<br><br>When all four boxes in the row contain a shape, you&rsquo;ll be given the option to submit that sequence for scoring—a &ldquo;GO!&rdquo; will appear over the &ldquo;1.&rdquo; Click &ldquo;GO!&rdquo; to submit your sequence.<br><br>
+
+		<strong>Interpreting your score</strong><br>
+		Your score will be displayed to the left of the &ldquo;1&rdquo; in the form of black or white dots.<br><br> 
+		<em>A black dot</em> indicates an exact match—one of your shapes matches a shape in the solution sequence <em>and</em> is in the correct position.<br><br> 
+		<em>A white dot</em> indicates that one of your shapes matches a shape in the solution sequence, but isn&rsquo;t in the correct position.<br><br>
+
+		<strong>Subsequent attempts</strong><br>
+		Use your powers of deduction (and a dash of luck) to keep submitting guesses and using your scores to figure out the solution. If you get it right, the round will be over and the solution sequence will appear at the top to show you that you were right!<br><br>If you run out of turns without deducing the correct sequence, the solution will also appear to sate your curiosity.</p>
+
+		<h1>muddleMIND vs. <br>the classic &ldquo;Master Mind&rdquo;</h1>
+		<p>The game play of muddleMIND is taken from the classic board game Master Mind, which I played as a kid. I loved the old game, but it had a few drawbacks. First, one player has to keep score, and if they make a mistake (which can easily happen), it can drive the other player absolutely nuts. The other problem with the classic game&mdash;and digital versions that stay true to its design&mdash;is that it&rsquo;s played with colored pegs, not shapes. Makes it a real challenge for people who can&rsquo;t see all colors, and those folks constitute a significant portion of the population.<br><br>
+
+		According to the National Eye Institute (NEI), as many as 8 percent of men and 0.5 percent of women with Northern European ancestry have some form of &ldquo;red-green&rdquo; colorblindness. This category comprises four specific conditions, and the perception of reds, greens, oranges, and yellows varies among the conditions and indiviuals. The NEI&rsquo;s much more thorough explanation can be found <a href="https://nei.nih.gov/health/color_blindness/facts_about">here</a>. <br><br>
+		I used the website <a href="https://coolors.co/">Coolors</a> to vet the &ldquo;muddleMIND&rdquo; color palette to ensure it would be attractive for folks with red-green colorblindness and would be easy to navigate even for those who see no color or are viewing the game on a monochrome device. My palette is skewed toward blue because most of the people I know (all guys) who can&rsquo;t see red and green find blue especially appealing.<br><br>
+
+		This game was designed &ldquo;mobile first&rdquo; to work well even on a browser of an iPhone 5 or SE. And it happens that another benefit to the colorblind-friendly design is that folks with &ldquo;normal&rdquo; color vision can play it with ease if their phones are operating in iOS &ldquo;Night Shift&rdquo; mode or a similar feature that turns down the display of blue light to prevent interference with melatonin production. I&rsquo;ve noticed that when this feature kicks in on my phone, I have a hard time playing games with colored dots&mdash;I can&rsquo;t tell the difference between white and yellow and some other combinations.
+
+		<br><br>I created the shapes used in this game with Photoshop. My intent was to make them of similar visual &ldquo;weight&rdquo; and distinguishable even for people with slightly blurry vision&mdash;e.g., a middle-aged person who has removed their reading glasses. I was my own guinea pig, playing muddleMIND in bed at 10 p.m. with &ldquo;Night Shift&rdquo; on and my glasses off.</p>
+
+		<h1>Speaking of colorblindness . . .</h1>
+		<p>While it&rsquo;s true that there are several conditions that can affect perception of color, there is no medical condition that can render a person able to see most things except for racial features.<br><br>
+
+		There are a lot of good resources on this topic, including a 2011 article published in <em>Psychology Today</em>, <a href="https://www.psychologytoday.com/us/blog/"> &ldquo;Colorblindness Ideology is a Form of Racism&rdquo;</a> by Monica T. Williams, Ph.D.<br><br>
+		Again, I hope you enjoy the game!</p>
+	</div>
 
 <!-- SOLUTION DIVS -->
 	<div id="solution1" class="centersquare"><img src="" id= "solImg1" width="20px" height="20px"></div>
