@@ -21,10 +21,8 @@ let glowingBeadId;
 let previousGlowingBeadId;
 
 // GLOBAL ARRAYS
-//let solutionSequence = []; //array of numbers corresponding to solution sequence
 let solutionBeadNames = [];
 
-//let temporaryTryBeadArray = ["", "", "", ""];
 let nestedTryBeadArray = [
 ["", "", "", ""], // index 0 = 1st try bead sequence
 ["", "", "", ""], // index 1 = 2nd try bead sequence
@@ -95,7 +93,6 @@ let firstLoadInitialize = function() {
 	for (z=0; z < numOfTries; z++) {
 		for (i = 0; i < sequenceLength; i++) {
 			targetCellId = "try" + (z + 1) + "_" + (i+1);
-			//activeCellArray[i] = targetCellId;
 			document.getElementById(targetCellId).addEventListener('click', function() {
 				if(activeCellArray.includes(this.id)) {
 					previousCellId = currentCellId;
@@ -135,9 +132,13 @@ let reInitialize = function() {
 		};
 	};
 	document.getElementById("tippy").style.backgroundImage = '';
+	document.getElementById("tippy").textContent = '';
 	document.getElementById("tippy").removeEventListener('click', reInitialize);
-	document.getElementById("tippy").textContent = "help?";
+	// document.getElementById("tippy").textContent = "help?";
 	document.getElementById("heady").style.visibility = "visible";
+	document.getElementById("gear").style.visibility = "visible";
+	document.getElementById("background").style.visibility = "visible";
+
 
 	initializeGame();
 };
@@ -184,7 +185,6 @@ function selectBeadVisuals(bead) {
 	};
 
 	if(selectedBeadCount === 4) {
-		// make submit button available
 		displaySubmitBtn();
 	};
 };
@@ -315,17 +315,19 @@ let gameOver = function() {
 	document.getElementById("tippy").style.backgroundImage = glowGradient;
 	document.getElementById("tippy").addEventListener('click', reInitialize);
 	document.getElementById("heady").style.visibility = "hidden";
+	document.getElementById("gear").style.visibility = "hidden";
+	document.getElementById("background").style.visibility = "hidden";
 };
 
 // GAME LOST
 let gameLost = function() {
-	document.getElementById("tippy").innerHTML = "YOU LOSE.<br>play again?";
+	document.getElementById("tippy").innerHTML = "you lost.<br>play again?";
 	gameOver();
 };
 
 // GAME WON
 let gameWon = function() {
-	document.getElementById("tippy").innerHTML = "YOU WIN!<br>play again?";
+	document.getElementById("tippy").innerHTML = "you won!<br>play again?";
 	gameOver();
 };
 

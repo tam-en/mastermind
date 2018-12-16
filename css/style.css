@@ -1,6 +1,7 @@
 body {
 	text-align: center;
-	font-family: 'Coiny', sans-serif;
+	font-family: 'Signika', sans-serif;
+	font-weight: 600;
 	background-color: #6B5CA5;
 	color: black;
 }
@@ -37,20 +38,20 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#background {
+	grid-area: 1 / 4 / 2 / 8;
+	background-color: #C4CDE1;
+	z-index: 0;
+}
+
 .centersquare {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: ;
+	font-weight: 700;
 	background-color: #649FC9;
 }
 
-.beadDivs {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-image: ;
-}
 
 .label-square {
 	display: flex;
@@ -58,38 +59,40 @@ body {
 	justify-content: center;
 	align-items: center;
 	background-color: #6B5CA5;
-
+	font-weight: 600;
 }
 
-.centersquare-plain {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 700;
-	background-color: #649FC9;
-
-}
 
 #tippy { 
 	grid-area: tips; 
-	font-weight: 900;
-	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	font-family: 'Signika', sans-serif;
+	background-color: #C4CDE1;
 	font-size: 14px;
-	z-index: 0;
+	z-index: 2;
+}
+
+#gear {
+	grid-area: 1 / 4 / 2 / 6;
+	z-index: 3;
+	background-color: #C4CDE1;
+
 }
 
 #heady { 
-	grid-area: 1 / 4 / 3 / 11;
-	font-size: 30px;
+	grid-area: 1 / 7 / 2 / 11;
+	font-size: 23px;
 	z-index: 1;
 	text-align: right;
 	font-family: 'Coiny', sans-serif;
 	background-color: #C4CDE1;
+	letter-spacing: .03em;
 } 
 
 
 
-#solution1 { grid-area: solution1 }
+#solution1 { grid-area: solution1;
+z-index: 4; }
 #solution2 { grid-area: solution2 }
 #solution3 { grid-area: solution3 }
 #solution4 { grid-area: solution4 }
