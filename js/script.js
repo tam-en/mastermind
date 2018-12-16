@@ -136,6 +136,8 @@ let reInitialize = function() {
 	document.getElementById("tippy").style.backgroundImage = '';
 	document.getElementById("tippy").removeEventListener('click', reInitialize);
 	document.getElementById("tippy").textContent = "help?";
+	document.getElementById("heady").style.visibility = "visible";
+
 	initializeGame();
 };
 
@@ -143,7 +145,8 @@ let reInitialize = function() {
 let displaySubmitBtn = function() {
 	var targetLabelId = "tryLabel" + currentTry;
 	document.getElementById(targetLabelId).style.backgroundImage = glowGradient;
-	//document.getElementById(targetLabelId).style.backgroundImage = "url('./img/blank.png')";
+	document.getElementById(targetLabelId).style.color = "black";
+
 	document.getElementById(targetLabelId).textContent = "GO!";
 	document.getElementById(targetLabelId).addEventListener('click', compareTryToSolution);
 };
@@ -189,6 +192,7 @@ let compareTryToSolution = function() {
 	// Turn off the submit button now that try array has been submitted
 	var targetLabelId = "tryLabel" + currentTry;
 	document.getElementById(targetLabelId).textContent = currentTry;
+	document.getElementById(targetLabelId).style.color = "white";	
 	document.getElementById(targetLabelId).removeEventListener('click', compareTryToSolution);
 	document.getElementById(targetLabelId).style.backgroundImage = '';
 
@@ -309,17 +313,18 @@ let gameOver = function() {
 	};
 	document.getElementById("tippy").style.backgroundImage = glowGradient;
 	document.getElementById("tippy").addEventListener('click', reInitialize);
+	document.getElementById("heady").style.visibility = "hidden";
 };
 
 // GAME LOST
 let gameLost = function() {
-	document.getElementById("tippy").textContent = "LOSE. Play again?";
+	document.getElementById("tippy").innerHTML = "YOU LOSE.<br>play again?";
 	gameOver();
 };
 
 // GAME WON
 let gameWon = function() {
-	document.getElementById("tippy").textContent = "WIN! Play again?";
+	document.getElementById("tippy").innerHTML = "YOU WIN!<br>play again?";
 	gameOver();
 };
 
