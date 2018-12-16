@@ -154,6 +154,7 @@ function makeCellGlow(cell) {
 	glowingCellPosition = Number(glowingCellId.toString().split('').pop());
 	document.getElementById(cell).style.backgroundImage = glowGradient;
 	glowingCellId = cell;
+
 };
 
 // MAKE A CLICKED BEAD "GLOW" WHEN SELECTED, REVERT TO REGULAR BACKGROUND WHEN ANOTHER IS SELECTED
@@ -168,6 +169,8 @@ function selectBeadVisuals(bead) {
 	var currentTargetImgId = glowingCellId + "img";
 	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);
 
+	//bookmark
+	
 	//test to see if nestedTryBeadArray[currentTry-1] is full, and if so, activate "submit" button
 	var selectedBeadCount = 0;
 	for(i = 0; i<sequenceLength; i++) {
