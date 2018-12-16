@@ -7,11 +7,9 @@ body {
 
 .grid-container {
 	display: grid;
-/*	position: relative;
-*/	grid-template-rows: 46px 6px repeat(16, 22px) 6px 46px;
-	grid-template-columns: 1fr 0px 0px 22px 22px repeat(5, 46px) 1fr;
-/*	grid-template-columns: 1fr 50px 25px 23px 23px repeat(5, 50px) 1fr;
-*/	grid-template-areas: 
+	grid-template-rows: 44px 6px repeat(16, 20px) 6px 44px;
+	grid-template-columns: 1fr 0px 0px 20px 20px repeat(5, 44px) 1fr;
+	grid-template-areas: 
 		". . . tips tips tips solution1 solution2 solution3 solution4 ."
 		". . . heady heady heady heady heady heady heady ."
 		". . . score8_1 score8_2 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
@@ -33,10 +31,6 @@ body {
 		". . . . . . . . . . ."
 		". . . bead1 bead1 bead2 bead3 bead4 bead5 bead6 .";
 	grid-gap: 2px;
-	/*margin: 0 auto;
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -51,12 +45,20 @@ body {
 	background-color: #649FC9;
 }
 
+.beadDivs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: ;
+}
+
 .label-square {
 	display: flex;
 	color: white;
 	justify-content: center;
 	align-items: center;
 	background-color: #6B5CA5;
+
 }
 
 .centersquare-plain {
@@ -82,7 +84,7 @@ body {
 	z-index: 1;
 	text-align: right;
 	font-family: 'Coiny', sans-serif;
-	background-color: #A3B1D1;
+	background-color: #C4CDE1;
 } 
 
 

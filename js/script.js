@@ -1,5 +1,6 @@
 // GLOBAL CONSTANTS
 const activeRowCellColor = "#A3B1D1";
+const extraLightColor = "#C4CDE1";
 const cellColor = "#649FC9";
 const fieldColor = "#6B5CA5";
 const glowGradient = "radial-gradient(white 2%," + activeRowCellColor + " 98%)";
