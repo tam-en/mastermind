@@ -66,7 +66,7 @@ I unearthed an ancient, travel-size version of the game I've been hauling around
 
 I sketched the necessary grid in Adobe InDesign. Here's a screen shot: 
 
-![initial grid design](![grid_sketch](https://raw.github.com/tam_en/mastermind/master/{PATH}/grid_sketch.png).
+![initial grid design](![grid_sketch](https://github.com/tam-en/mastermind/blob/master/grid_sketch.png).
 
 My initial grid plan includes a left side column to hold the shape choices for deployment on desktop. Didn't get around to implementing that. Another departure from the original plan is the heading elements -- I eventually discovered that although the gameboard as I first designed it fit just fine in the iPhone 5 viewport -- at least it did in the Chrome Inspector simulation of that viewport. But in real life the phone-based browsers chew up a significant portion of the vertical real estate, so I needed to shrink the height of the grid. I eliminated a row and, at end of game play, have the solution sequence, game lost/won message and "play again" option appear in the row where I simultaneously hide the game title and gear icon.
 
