@@ -37,7 +37,7 @@ If you run out of turns without deducing the correct sequence, the solution will
 
 The game play of muddleMIND is taken from the classic board game Master Mind, which I played as a kid. I loved the old game, but it had a few drawbacks. First, one player has to keep score, and if they make a mistake (which can easily happen), it can drive the other player absolutely nuts. The other problem with the classic game -- and digital versions that stay true to its design -- is that it's played with colored pegs, not shapes. Makes it a real challenge for people who can't see all colors, and those folks constitute a significant portion of the population.
 
-According to the National Eye Institute (NEI), as many as 8 percent of men and 0.5 percent of women with Northern European ancestry have some form of "red-green" colorblindness. This category comprises four specific conditions, and the perception of reds, greens, oranges, and yellows varies among the conditions and indiviuals. The NEI's much more thorough explanation can be found at: https://nei.nih.gov/health/color_blindness/facts_about">
+According to the National Eye Institute (NEI), as many as 8 percent of men and 0.5 percent of women with Northern European ancestry have some form of "red-green" colorblindness. This category comprises four specific conditions, and the perception of reds, greens, oranges, and yellows varies among the conditions and indiviuals. The NEI's much more thorough explanation can be found at: https://nei.nih.gov/health/color_blindness/facts_about"
 
 I used the Coolors website (https://coolors.co/) to vet the "muddleMIND" color palette to ensure it would be attractive for folks with red-green colorblindness and would be easy to navigate even for those who see no color or are viewing the game on a monochrome device. My palette is skewed toward blue because most of the people I know (all guys) who can't see red and green find blue especially appealing.
 
@@ -83,8 +83,8 @@ Finally, I tried to write most of the JavaScript to make the game scalable. Ther
 
 ## Author
 
-Tamis Nordling\
-
+Tamis Nordling
+\
 GitHub: https://github.com/tam-en
 \
 LinkedIn: https://www.linkedin.com/in/tamis-nordling/

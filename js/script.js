@@ -15,7 +15,9 @@ let displayHelpOnOff = 1;
 let previousCellId;
 let glowingCellId;
 let glowingCellPosition;
-let currentBeadId = "bead2";
+// let currentBeadId = "bead2";
+let currentBeadId = "";
+let previousBeadId = "";
 let glowingBeadId;
 let previousGlowingBeadId;
 
@@ -163,7 +165,7 @@ let displaySubmitBtn = function() {
 };
 
 
-// MAKE A CELL "GLOW" (SORT OF) WHEN IT'S CLICKED ON
+// MAKE A CELL "GLOW" WHEN IT'S CLICKED ON
 function makeCellGlow(cell) {
 	document.getElementById(previousCellId).style.backgroundImage = '';
 	glowingCellPosition = Number(glowingCellId.toString().split('').pop());
@@ -174,8 +176,17 @@ function makeCellGlow(cell) {
 
 // MAKE A CLICKED BEAD "GLOW" WHEN SELECTED, REVERT TO REGULAR BACKGROUND WHEN ANOTHER IS SELECTED
 function selectBeadVisuals(bead) {
+	// console.log("previousBeadId=", previousBeadId);	
+	// console.log("bead=", bead);
 	glowingBeadId = bead;
-	document.getElementById(glowingBeadId).style.backgroundImage = GLOW_GRADIENT;
+	// console.log("previousBead=", previousBeadId);
+	// document.getElementById(glowingBeadId).style.backgroundImage = GLOW_GRADIENT;
+
+	// if(previousBeadId) {
+	// 	document.getElementById(previousBeadId).style.backgroundImage = "none";
+	// }
+	// previousBeadId = bead;
+	
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
 	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);

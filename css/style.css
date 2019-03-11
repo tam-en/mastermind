@@ -63,7 +63,7 @@ p {
 	grid-area: 3 / 4 / 21 / 11;
 	background-color: #DEE3EE;
 	visibility: hidden;
-	z-index: 4;
+	z-index: 10;
 	overflow: scroll;
 }
 
@@ -218,6 +218,7 @@ p {
 #bead4 { grid-area: bead4 }
 #bead5 { grid-area: bead5 }
 #bead6 { grid-area: bead6 }
+.bead:hover { background-image: radial-gradient(white 2%, #A3B1D1 98%) }
 
 #dtopBead1 { grid-area: dtopBead1 }
 #dtopBead2 { grid-area: dtopBead2 }
