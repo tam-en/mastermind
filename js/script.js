@@ -15,7 +15,6 @@ let displayHelpOnOff = 1;
 let previousCellId;
 let glowingCellId;
 let glowingCellPosition;
-// let currentBeadId = "bead2";
 let currentBeadId = "";
 let previousBeadId = "";
 let glowingBeadId;
@@ -189,10 +188,7 @@ function selectBeadVisuals(bead) {
 	
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
-	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);
-
-	//bookmark
-	
+	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);	
 	//test to see if nestedTryBeadArray[currentTry-1] is full, and if so, activate "submit" button
 	var selectedBeadCount = 0;
 	for(i = 0; i<SEQUENCE_LENGTH; i++) {

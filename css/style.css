@@ -4,6 +4,7 @@ body {
 	font-weight: 600;
 	background-color: #6B5CA5;
 	color: black;
+	z-index: 0;
 }
 
 h1 {
@@ -11,6 +12,7 @@ h1 {
 	text-align: left;
 	font-weight: 600;
 	font-size: 17px;
+	z-index: 1000;
 }
 
 p {
@@ -19,6 +21,7 @@ p {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 1.35;
+	z-index: 1000;
 }
 
 .grid-container {
@@ -56,14 +59,14 @@ p {
 #background {
 	grid-area: 1 / 4 / 2 / 8;
 	background-color: #DEE3EE;
-	z-index: 0;
+	/*z-index: 0;*/
 }
 
 #helpWindow {
 	grid-area: 3 / 4 / 21 / 11;
 	background-color: #DEE3EE;
 	visibility: hidden;
-	z-index: 10;
+	z-index: 1000;
 	overflow: scroll;
 }
 
@@ -220,12 +223,60 @@ p {
 #bead6 { grid-area: bead6 }
 .bead:hover { background-image: radial-gradient(white 2%, #A3B1D1 98%) }
 
+
+/*@media only screen and (min-width: 500px) {
+	.grid-container {
+		display: grid;
+		grid-template-rows: 44px 6px repeat(16, 20px) 6px 44px;
+		grid-template-columns: 1fr 44px 44px 20px 20px repeat(5, 44px) 1fr;
+		grid-template-areas: 
+			". tips tips tips tips tips solution1 solution2 solution3 solution4 ."
+			". . . heady heady heady heady heady heady heady ."
+			". . . score8_1 score8_2 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
+			". . . score8_3 score8_4 tryLabel8 try8_1 try8_2 try8_3 try8_4 ."
+			". . . score7_1 score7_2 tryLabel7 try7_1 try7_2 try7_3 try7_4 ."
+			". . . score7_3 score7_4 tryLabel7 try7_1 try7_2 try7_3 try7_4 ."
+			". dtopBead6 . score6_1 score6_2 tryLabel6 try6_1 try6_2 try6_3 try6_4 ."
+			". dtopBead6 . score6_3 score6_4 tryLabel6 try6_1 try6_2 try6_3 try6_4 ."
+			". dtopBead5 . score5_1 score5_2 tryLabel5 try5_1 try5_2 try5_3 try5_4 ."
+			". dtopBead5 . score5_3 score5_4 tryLabel5 try5_1 try5_2 try5_3 try5_4 ."
+			". dtopBead4 . score4_1 score4_2 tryLabel4 try4_1 try4_2 try4_3 try4_4 ."
+			". dtopBead4 . score4_3 score4_4 tryLabel4 try4_1 try4_2 try4_3 try4_4 ."
+			". dtopBead3 . score3_1 score3_2 tryLabel3 try3_1 try3_2 try3_3 try3_4 ."
+			". dtopBead3 . score3_3 score3_4 tryLabel3 try3_1 try3_2 try3_3 try3_4 ."
+			". dtopBead2 . score2_1 score2_2 tryLabel2 try2_1 try2_2 try2_3 try2_4 ."
+			". dtopBead2 . score2_3 score2_4 tryLabel2 try2_1 try2_2 try2_3 try2_4 ."
+			". dtopBead1 . score1_1 score1_2 tryLabel1 try1_1 try1_2 try1_3 try1_4 ."
+			". dtopBead1 . score1_3 score1_4 tryLabel1 try1_1 try1_2 try1_3 try1_4 ."
+			". . . . . . . . . . ."
+			". bottom bottom bottom bottom bottom bottom bottom bottom bottom .";
+	}
+
+	#gear {
+		grid-area: 1 / 2 / 2 / 3;
+		z-index: 3;
+	}	
+
+	#bead1 { grid-area: dtopBead1 }
+	#bead2 { grid-area: dtopBead2 }
+	#bead3 { grid-area: dtopBead3 }
+	#bead4 { grid-area: dtopBead4 }
+	#bead5 { grid-area: dtopBead5 }
+	#bead6 { grid-area: dtopBead6 }
+
+	.bottom { 
+		grid-area: bottom; 
+		border-top: 5px solid #DEE3EE;
+	}
+
+
+}
+
+
 #dtopBead1 { grid-area: dtopBead1 }
 #dtopBead2 { grid-area: dtopBead2 }
 #dtopBead3 { grid-area: dtopBead3 }
 #dtopBead4 { grid-area: dtopBead4 }
 #dtopBead5 { grid-area: dtopBead5 }
-#dtopBead6 { grid-area: dtopBead6 }
+#dtopBead6 { grid-area: dtopBead6 }*/
 
-/*.hide_me { visibility: visible; }
-.also_hide { visibility: visible; }*/
