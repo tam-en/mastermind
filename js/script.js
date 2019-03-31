@@ -105,6 +105,7 @@ let firstLoadInitialize = function() {
 			});
 		};
 	};
+	// Turn off listener for gear icon (help/about info)
 	document.getElementById("gearImg").addEventListener('click', function(){
 		displayHelpOnOff++;
 		if(displayHelpOnOff % 2 === 0) {
@@ -175,17 +176,7 @@ function makeCellGlow(cell) {
 
 // MAKE A CLICKED BEAD "GLOW" WHEN SELECTED, REVERT TO REGULAR BACKGROUND WHEN ANOTHER IS SELECTED
 function selectBeadVisuals(bead) {
-	// console.log("previousBeadId=", previousBeadId);	
-	// console.log("bead=", bead);
 	glowingBeadId = bead;
-	// console.log("previousBead=", previousBeadId);
-	// document.getElementById(glowingBeadId).style.backgroundImage = GLOW_GRADIENT;
-
-	// if(previousBeadId) {
-	// 	document.getElementById(previousBeadId).style.backgroundImage = "none";
-	// }
-	// previousBeadId = bead;
-	
 	var selectedBeadPng = './img/' + glowingBeadId + '.png';
 	var currentTargetImgId = glowingCellId + "img";
 	document.getElementById(currentTargetImgId).setAttribute("src", selectedBeadPng);	
